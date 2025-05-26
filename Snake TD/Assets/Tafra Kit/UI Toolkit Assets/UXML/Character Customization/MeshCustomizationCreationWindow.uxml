@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Tafra%20Kit/UI%20Toolkit%20Assets/Style%20Sheets/Style.uss?fileID=7433441132597879392&amp;guid=01865b0fba667d34480a8c6b00dd6b54&amp;type=3#Style" />
+    <ui:VisualElement name="MainPanel" style="flex-grow: 0; padding-top: 5px; padding-bottom: 15px; padding-right: 5px; padding-left: 5px; display: flex;">
+        <ui:Label tabindex="-1" text="Mesh Customization" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" class="windowTitle" />
+        <ui:TextField picking-mode="Ignore" label="Folder Path" value="Assets/" view-data-key="MCCAssetPath" tooltip="The path of the folder to store the created customization/s in." name="PathField" />
+        <ui:TextField picking-mode="Ignore" label="Category" name="CategoryField" />
+        <uie:ObjectField label="Extra Bones Root" name="ExtraBonesField" tooltip="The first bone of the extra bones chain if found." type="UnityEngine.Transform, UnityEngine.CoreModule" />
+        <uie:ObjectField label="Extra Bones Root" name="ExtraBonesDimmedField" tooltip="Can&apos;t set extra bones if more than one skinned mesh renderer is selected." type="UnityEngine.Transform, UnityEngine.CoreModule" style="opacity: 0.5; display: none;" />
+        <ui:Label tabindex="-1" text="Selected Skinned Renderers: 1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SelectedCount" style="-unity-text-align: upper-center; display: flex; margin-top: 2px; margin-bottom: 2px; font-size: 11px;" />
+        <ui:VisualElement name="SuitableSelectionElements" style="flex-shrink: 0;">
+            <ui:Button text="Create" name="CreateButton_Active" />
+        </ui:VisualElement>
+        <ui:VisualElement name="NoSelectionElements" style="display: none; flex-shrink: 0;">
+            <ui:Button text="Create" name="CreateButton_Dimmed" style="opacity: 0.4;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

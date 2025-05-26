@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efaefefb2416c8e42b9c959bc132ac11, type: 3}
+  m_Name: dress_3
+  m_EditorClassIdentifier: 
+  category:
+    value: 
+    scriptableString: {fileID: 11400000, guid: ec33073f116c313479e8634216927592, type: 2}
+  customizationPrefab: {fileID: 5255621333696769437, guid: 4873c66407173b6489192e6e9f95a70b,
+    type: 3}
+  rootBoneName: mixamorig:Hips
+  boneNames:
+  - mixamorig:Hips
+  - mixamorig:Spine
+  - mixamorig:Spine1
+  - mixamorig:Spine2
+  - mixamorig:Neck
+  - mixamorig:LeftShoulder
+  - mixamorig:LeftArm
+  - mixamorig:LeftForeArm
+  - mixamorig:RightShoulder
+  - mixamorig:RightArm
+  - mixamorig:RightForeArm
+  - mixamorig:LeftUpLeg
+  - mixamorig:LeftLeg
+  - mixamorig:RightUpLeg
+  - mixamorig:RightLeg
+  extraBonesData:
+    Exists: 0
+    ParentBoneName: 
+    LocalPosition: {x: 0, y: 0, z: 0}
+    LocalRotation: {x: 0, y: 0, z: 0, w: 0}

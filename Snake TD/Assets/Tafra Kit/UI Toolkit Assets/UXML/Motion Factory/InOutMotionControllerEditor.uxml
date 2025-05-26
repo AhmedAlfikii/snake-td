@@ -1,0 +1,24 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:Template name="VisibilityMotionControllerEditor" src="project://database/Assets/Tafra%20Kit/UI%20Toolkit%20Assets/UXML/Motion%20Factory/VisibilityMotionControllerPropertiesEditor.uxml?fileID=9197481963319205126&amp;guid=f731400c7a38f3f47bfeed53ba35f4dc&amp;type=3#VisibilityMotionControllerPropertiesEditor" />
+    <ui:Template name="VisibilityMotionControllerEventsEditor" src="project://database/Assets/Tafra%20Kit/UI%20Toolkit%20Assets/UXML/Motion%20Factory/VisibilityMotionControllerEventsEditor.uxml?fileID=9197481963319205126&amp;guid=5de2f37adc634764dbbf96828428c6ca&amp;type=3#VisibilityMotionControllerEventsEditor" />
+    <Style src="project://database/Assets/Tafra%20Kit/UI%20Toolkit%20Assets/Style%20Sheets/Style.uss?fileID=7433441132597879392&amp;guid=01865b0fba667d34480a8c6b00dd6b54&amp;type=3#Style" />
+    <ui:VisualElement name="TopSpace" style="flex-grow: 0; height: 5px;" />
+    <ui:Instance template="VisibilityMotionControllerEditor" name="VisibilityMotionControllerPropertiesEditor" />
+    <ui:VisualElement class="section" style="flex-grow: 1; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-left-color: rgb(40, 40, 40); border-right-color: rgb(40, 40, 40); border-top-color: rgb(40, 40, 40); border-bottom-color: rgb(40, 40, 40);">
+        <uie:Toolbar name="Toolbar" style="justify-content: space-between; opacity: 1;">
+            <ui:Button text="In" parse-escape-sequences="true" display-tooltip-when-elided="true" name="InButton" tooltip="The animation to play when the object is showing." focusable="false" class="tabButton tabButtonActive" style="border-top-right-radius: 0; border-bottom-right-radius: 0; width: 50%; border-bottom-left-radius: 0; border-top-left-radius: 3px;" />
+            <ui:Button text="Out" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OutButton" focusable="false" class="tabButton" style="border-top-left-radius: 0; border-bottom-left-radius: 0; width: 50%; border-bottom-right-radius: 0; border-top-right-radius: 3px;" />
+        </uie:Toolbar>
+        <ui:GroupBox name="GroupBox" style="opacity: 1; align-self: auto; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; justify-content: flex-start; align-items: flex-start;">
+            <ui:VisualElement name="InMotionContainer" style="flex-grow: 1; width: 100%;">
+                <ui:Label tabindex="-1" text="In Motion" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font-style: bold; font-size: 16px;" />
+                <uie:PropertyField binding-path="inMotions" style="align-self: stretch;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="OutMotionContainer" style="flex-grow: 1; width: 100%;">
+                <ui:Label tabindex="-1" text="Out Motion" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-font-style: bold; font-size: 16px;" />
+                <uie:PropertyField binding-path="outMotions" style="align-self: stretch;" />
+            </ui:VisualElement>
+        </ui:GroupBox>
+    </ui:VisualElement>
+    <ui:Instance template="VisibilityMotionControllerEventsEditor" name="VisibilityMotionControllerEventsEditor" />
+</ui:UXML>

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efaefefb2416c8e42b9c959bc132ac11, type: 3}
+  m_Name: boot
+  m_EditorClassIdentifier: 
+  category:
+    editorDisplayValue: 
+    value: 
+    scriptableVariable: {fileID: 0}
+  customizationPrefab: {fileID: 8335387483129140105, guid: 3eafb60550c17b040b5bfd276f3a287c,
+    type: 3}
+  rootBoneName: mixamorig:RightUpLeg
+  boneNames:
+  - mixamorig:LeftUpLeg
+  - mixamorig:LeftLeg
+  - mixamorig:LeftFoot
+  - mixamorig:LeftToeBase
+  - mixamorig:LeftToe_End
+  - mixamorig:RightUpLeg
+  - mixamorig:RightLeg
+  - mixamorig:RightFoot
+  - mixamorig:RightToeBase
+  - mixamorig:RightToe_End
+  extraBonesData:
+    Exists: 0
+    BoneChains: []

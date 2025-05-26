@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/Tafra%20Kit/UI%20Toolkit%20Assets/Style%20Sheets/Style.uss?fileID=7433441132597879392&amp;guid=01865b0fba667d34480a8c6b00dd6b54&amp;type=3#Style" />
+    <ui:Foldout text="Events" view-data-key="visibilityMotionControllerEvents" value="false" style="-unity-font-style: bold; font-size: 13px;">
+        <uie:PropertyField binding-path="onShowStart" style="font-size: 12px; -unity-font-style: normal;" />
+        <uie:PropertyField view-data-key="visibilityMotionControllerEvents" binding-path="onShowComplete" name="PropertyField" style="font-size: 12px; -unity-font-style: normal;" />
+        <uie:PropertyField view-data-key="visibilityMotionControllerEvents" binding-path="onHideStart" style="-unity-font-style: normal; font-size: 12px;" />
+        <uie:PropertyField view-data-key="visibilityMotionControllerEvents" binding-path="onHideComplete" style="font-size: 12px; -unity-font-style: normal;" />
+    </ui:Foldout>
+</ui:UXML>

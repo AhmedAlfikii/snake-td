@@ -1,0 +1,50 @@
+GridBackground {
+    --grid-background-color: rgb(40, 40, 40);
+    --line-color: rgba(193, 196, 192, 0.1);
+    --thick-line-color: rgba(193, 196, 192, 0.1);
+    --spacing: 15;
+}
+
+.sidePanelTab {
+    width: 100px;
+    -unity-text-align: middle-center;
+    justify-content: center;
+}
+
+.layerButton {
+    -unity-font-style: normal;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    font-size: 13px;
+    background-color: rgba(176, 176, 176, 0.11);
+    transition-duration: 0.2s;
+}
+
+.layerButton:hover {
+    background-color: rgba(176, 176, 176, 0.22);
+    font-size: 15px;
+}
+
+.layerButton:focus {
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+.layerButtonSelected {
+    -unity-font-style: bold;
+    background-color: rgba(91, 91, 91, 0.76);
+    transition-duration: 0.2s;
+    font-size: 15px;
+}

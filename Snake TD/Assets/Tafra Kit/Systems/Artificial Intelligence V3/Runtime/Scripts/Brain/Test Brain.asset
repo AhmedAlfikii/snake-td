@@ -1,0 +1,388 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1623ce837fbc38544adfbc34a5f336c6, type: 3}
+  m_Name: Test Brain
+  m_EditorClassIdentifier: 
+  layers:
+  - layerName: Base Layer
+    stateMachine:
+      isOriginal: Original
+      states:
+      - rid: 557756402286985254
+      - rid: 557756402286985255
+      - rid: 557756402286985256
+      - rid: 557756402286985257
+      - rid: 557756402286985260
+      - rid: 557756402286985261
+      anyState:
+        rid: 557756402286985254
+      entryState:
+        rid: 557756402286985255
+      exitState:
+        rid: 557756402286985256
+  blackboard:
+    floatProperties: []
+    advancedFloatProperties: []
+    intProperties:
+    - name: Int
+      expose: 0
+      tooltip: 
+      id: 0
+      value: 0
+    boolProperties: []
+    stringProperties: []
+    vector3Properties: []
+    gameObjectProperties: []
+    scriptableObjectProperties: []
+    actorProperties: []
+    objectProperties: []
+    nextPropertyID: 1
+  DisplayedLayerIndex: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 557756402286985254
+      type: {class: AnyState, ns: TafraKit.Internal.AI3, asm: Assembly-CSharp}
+      data:
+        name: Any
+        guid: 4568b84f-21ad-4597-921d-f06caf6fb803
+        position:
+          serializedVersion: 2
+          x: 0
+          y: -85
+          width: 0
+          height: 0
+        holdingObject: {fileID: 0}
+        transitions: []
+        LogEditorEvents: 0
+    - rid: 557756402286985255
+      type: {class: EntryState, ns: TafraKit.Internal.AI3, asm: Assembly-CSharp}
+      data:
+        name: Entry
+        guid: 6a450c45-5c8d-46c4-bc08-5ab81325b266
+        position:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        holdingObject: {fileID: 0}
+        transitions:
+        - fromState:
+            rid: 557756402286985255
+          toState:
+            rid: 557756402286985257
+          evaluateOnCompleteOnly: 0
+          conditionsGroup:
+            satisfactionRequirement: 0
+            conditions: []
+        LogEditorEvents: 0
+    - rid: 557756402286985256
+      type: {class: ExitState, ns: TafraKit.Internal.AI3, asm: Assembly-CSharp}
+      data:
+        name: Exit
+        guid: 99e2ecf7-ce12-4ba4-8813-79191659804d
+        position:
+          serializedVersion: 2
+          x: 355
+          y: 0
+          width: 0
+          height: 0
+        holdingObject: {fileID: 0}
+        transitions: []
+        LogEditorEvents: 0
+    - rid: 557756402286985257
+      type: {class: BehaviourTreeState, ns: TafraKit.Internal.AI3, asm: Assembly-CSharp}
+      data:
+        name: Behaviour Tree
+        guid: c8b2e568-ebd2-4155-bc51-d5eedab1a92b
+        position:
+          serializedVersion: 2
+          x: 0
+          y: 102.66667
+          width: 200
+          height: 60
+        holdingObject: {fileID: 11400000}
+        transitions:
+        - fromState:
+            rid: 557756402286985257
+          toState:
+            rid: 557756402286985260
+          evaluateOnCompleteOnly: 0
+          conditionsGroup:
+            satisfactionRequirement: 0
+            conditions: []
+        LogEditorEvents: 0
+        externalBehaviourTree: {fileID: 0}
+        internalBehaviourTree:
+          nodes:
+          - rid: 557756402286985258
+          - rid: 557756402286985262
+          - rid: 557756402286985263
+          - rid: 557756402286985264
+          - rid: 557756402286985271
+          - rid: 557756402286985272
+          - rid: 557756426563878914
+          root:
+            rid: 557756402286985258
+    - rid: 557756402286985258
+      type: {class: RootNode, ns: TafraKit.Internal.AI3, asm: Assembly-CSharp}
+      data:
+        name: Root
+        guid: ce5b6211-b82a-4bf7-b927-ea512633c306
+        position:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        holdingObject: {fileID: 0}
+        children:
+        - rid: 557756402286985262
+    - rid: 557756402286985260
+      type: {class: WaitState, ns: TafraKit.Internal.AI3, asm: Assembly-CSharp}
+      data:
+        name: Wait
+        guid: a1013e4e-e0d5-45b6-85f7-ea30d3ce4902
+        position:
+          serializedVersion: 2
+          x: 150
+          y: 214
+          width: 175.33334
+          height: 50
+        holdingObject: {fileID: 11400000}
+        transitions:
+        - fromState:
+            rid: 557756402286985260
+          toState:
+            rid: 557756402286985261
+          evaluateOnCompleteOnly: 0
+          conditionsGroup:
+            satisfactionRequirement: 0
+            conditions: []
+        LogEditorEvents: 0
+        waitDuration:
+          targetBlackboard: 0
+          blackboardPropertyName: 
+          internalBlackboardPropertyID: -1
+          defaultValue: 1
+          enableDefault: 0
+        msgPrefix: 
+    - rid: 557756402286985261
+      type: {class: DebugState, ns: TafraKit.Internal.AI3, asm: Assembly-CSharp}
+      data:
+        name: Debug Log
+        guid: bb21bfa5-6322-4747-a0e3-de031bb2328e
+        position:
+          serializedVersion: 2
+          x: 343.33334
+          y: 143.33333
+          width: 175.33334
+          height: 50
+        holdingObject: {fileID: 11400000}
+        transitions:
+        - fromState:
+            rid: 557756402286985261
+          toState:
+            rid: 557756402286985256
+          evaluateOnCompleteOnly: 0
+          conditionsGroup:
+            satisfactionRequirement: 0
+            conditions: []
+        LogEditorEvents: 0
+        debugMessage: This is a debug value
+    - rid: 557756402286985262
+      type: {class: ParallelNode, ns: TafraKit.Internal.AI3, asm: Assembly-CSharp}
+      data:
+        name: Parallel
+        guid: 61d8911f-e311-460d-9270-a81cce3641d8
+        position:
+          serializedVersion: 2
+          x: -74.666664
+          y: 153.33333
+          width: 200
+          height: 120.000015
+        holdingObject: {fileID: 0}
+        children:
+        - rid: 557756402286985263
+        - rid: 557756402286985264
+        firstNodeIsController: 0
+    - rid: 557756402286985263
+      type: {class: AnimatorTriggerSetterTask, ns: TafraKit.Internal.AI3, asm: Assembly-CSharp}
+      data:
+        name: Animator Trigger Setter
+        guid: d625468d-5aae-4577-ac12-fc8e90ccfec1
+        position:
+          serializedVersion: 2
+          x: -217.99205
+          y: 357.9126
+          width: 0
+          height: 0
+        holdingObject: {fileID: 0}
+        children: []
+        animatorParameterName:
+          targetBlackboard: 0
+          blackboardPropertyName: 
+          internalBlackboardPropertyID: -1
+          defaultValue: 
+          enableDefault: 0
+        targetState:
+          targetBlackboard: 0
+          blackboardPropertyName: 
+          internalBlackboardPropertyID: -1
+          defaultValue: 1
+          enableDefault: 0
+    - rid: 557756402286985264
+      type: {class: SelectorNode, ns: TafraKit.Internal.AI3, asm: Assembly-CSharp}
+      data:
+        name: Selector
+        guid: 5822eed0-15c6-458f-8ef1-d2e625a387db
+        position:
+          serializedVersion: 2
+          x: 114
+          y: 338
+          width: 200
+          height: 120
+        holdingObject: {fileID: 0}
+        children:
+        - rid: 557756402286985271
+        - rid: 557756402286985272
+    - rid: 557756402286985271
+      type: {class: CircleAtTargetTask, ns: TafraKit.Internal.AI3, asm: Assembly-CSharp}
+      data:
+        name: Circle At Target
+        guid: ffc8a732-3709-42da-898c-a89ca4475cfc
+        position:
+          serializedVersion: 2
+          x: -18
+          y: 598.6667
+          width: 200
+          height: 120
+        holdingObject: {fileID: 0}
+        children: []
+        target:
+          pointType: 0
+          actorGetter:
+            targetBlackboard: 0
+            blackboardPropertyName: 
+            internalBlackboardPropertyID: -1
+            defaultValue: {fileID: 0}
+            enableDefault: 0
+          gameObjectGetter:
+            targetBlackboard: 0
+            blackboardPropertyName: 
+            internalBlackboardPropertyID: -1
+            defaultValue: {fileID: 0}
+            enableDefault: 0
+          vector3Getter:
+            targetBlackboard: 0
+            blackboardPropertyName: 
+            internalBlackboardPropertyID: -1
+            defaultValue: {x: 0, y: 0, z: 0}
+            enableDefault: 0
+          getHealthyTargetPoint: 0
+        diameter:
+          floatType: 0
+          normalFloatGetter:
+            targetBlackboard: 0
+            blackboardPropertyName: 
+            internalBlackboardPropertyID: -1
+            defaultValue: 3
+            enableDefault: 0
+          advancedFloatGetter:
+            targetBlackboard: 0
+            blackboardPropertyName: 
+            internalBlackboardPropertyID: -1
+            defaultValue:
+              editorDisplayValue: 0
+              value: 3
+              scriptableVariable: {fileID: 0}
+              floatType: 0
+              min:
+                editorDisplayValue: 0
+                value: 0
+                scriptableVariable: {fileID: 0}
+              max:
+                editorDisplayValue: 0
+                value: 0
+                scriptableVariable: {fileID: 0}
+              randomizeSign: 0
+              performOperation: 0
+              operationValue:
+                editorDisplayValue: 0
+                value: 0
+                scriptableVariable: {fileID: 0}
+              operation: 0
+            enableDefault: 0
+        storageProperty:
+          targetBlackboard: 0
+          blackboardPropertyName: 
+          internalBlackboardPropertyID: -1
+    - rid: 557756402286985272
+      type: {class: SelectorNode, ns: TafraKit.Internal.AI3, asm: Assembly-CSharp}
+      data:
+        name: Selector
+        guid: fe95e4a5-0178-4d20-a92d-035a52ad193f
+        position:
+          serializedVersion: 2
+          x: 295.33334
+          y: 598.6667
+          width: 200
+          height: 120
+        holdingObject: {fileID: 0}
+        children: []
+    - rid: 557756426563878914
+      type: {class: WaitTaskNode, ns: TafraKit.Internal.AI3, asm: Assembly-CSharp}
+      data:
+        name: Wait
+        guid: f826852f-0a35-4f2f-8758-266b6b0f2ff6
+        position:
+          serializedVersion: 2
+          x: -346
+          y: 580
+          width: 200
+          height: 120
+        holdingObject: {fileID: 0}
+        children: []
+        waitDuration:
+          floatType: 0
+          normalFloatGetter:
+            targetBlackboard: 0
+            blackboardPropertyName: 
+            internalBlackboardPropertyID: -1
+            defaultValue: 1
+            enableDefault: 0
+          advancedFloatGetter:
+            targetBlackboard: 0
+            blackboardPropertyName: 
+            internalBlackboardPropertyID: -1
+            defaultValue:
+              editorDisplayValue: 0
+              value: 1
+              scriptableVariable: {fileID: 0}
+              floatType: 0
+              min:
+                editorDisplayValue: 0
+                value: 0
+                scriptableVariable: {fileID: 0}
+              max:
+                editorDisplayValue: 0
+                value: 0
+                scriptableVariable: {fileID: 0}
+              randomizeSign: 0
+              performOperation: 0
+              operationValue:
+                editorDisplayValue: 0
+                value: 0
+                scriptableVariable: {fileID: 0}
+              operation: 0
+            enableDefault: 0

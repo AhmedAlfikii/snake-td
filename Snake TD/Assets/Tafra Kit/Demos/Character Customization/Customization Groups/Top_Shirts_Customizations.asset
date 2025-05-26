@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07b0291211062d34e8aad496605e344c, type: 3}
+  m_Name: Top_Shirts_Customizations
+  m_EditorClassIdentifier: 
+  customizations:
+  - {fileID: 11400000, guid: 1f1f3ff34736671458e8608c9b3cba06, type: 2}
+  - {fileID: 11400000, guid: c7ae665ea6e71604c8c8fef10ba1ab66, type: 2}
+  - {fileID: 11400000, guid: 2d2b55c5fc7a2a7469b11817220d4df9, type: 2}

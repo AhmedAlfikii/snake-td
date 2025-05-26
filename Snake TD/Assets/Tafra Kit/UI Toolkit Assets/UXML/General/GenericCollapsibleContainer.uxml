@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Tafra%20Kit/UI%20Toolkit%20Assets/Style%20Sheets/GenericCollapsibleContainerStyle.uss?fileID=7433441132597879392&amp;guid=edf65b4087536f54ca6056cacb6df3c1&amp;type=3#GenericCollapsibleContainerStyle" />
+    <ui:VisualElement name="main-container" class="mainContainer">
+        <ui:Button text="Title" parse-escape-sequences="true" display-tooltip-when-elided="true" name="header" class="header">
+            <ui:VisualElement name="empty-icon" style="width: 20px; height: 20px; margin-left: 2px;" />
+            <ui:VisualElement name="header-sign" style="background-image: url(&quot;project://database/Assets/Editor%20Default%20Resources/Tafra%20Kit/Icons/d_Tafra_Toolbar%20Plus.png?fileID=2800000&amp;guid=cee7fc89d897db340b420268689e44ab&amp;type=3#d_Tafra_Toolbar Plus&quot;); width: 20px; height: 20px; margin-right: 2px;" />
+        </ui:Button>
+        <ui:VisualElement name="content" class="content" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,359 @@
+.section {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    background-color: var(--unity-colors-box-background);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.sectionDark {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    background-color: var(--unity-colors-default-background);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.sectionLessDark {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    background-color: rgba(10, 10, 10, 0.11);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-left-color: rgb(31, 31, 31);
+    border-top-color: rgb(31, 31, 31);
+    border-bottom-color: rgb(31, 31, 31);
+    border-right-color: rgb(31, 31, 31);
+}
+
+.sectionOutlined {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    background-color: var(--unity-colors-box-background);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-left-color: var(--unity-colors-app_toolbar-background);
+    border-right-color: var(--unity-colors-app_toolbar-background);
+    border-top-color: var(--unity-colors-app_toolbar-background);
+    border-bottom-color: var(--unity-colors-app_toolbar-background);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.tabButton {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-out;
+    -unity-font-style: bold;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    transition-property: all;
+}
+
+.tabButton:hover {
+    font-size: 14px;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-out;
+    transition-property: all;
+}
+
+.tabButtonActive {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    -unity-font-style: bold;
+    background-color: var(--unity-colors-button-background-pressed);
+    font-size: 15px;
+}
+
+.tabButtonActive:hover {
+    font-size: 15px;
+}
+
+.expandButton {
+    width: 100%;
+    height: 20px;
+    background-color: var(--unity-colors-app_toolbar-background);
+    -unity-font-style: bold;
+    font-size: 14px;
+    transition-duration: 0.2s;
+    transition-property: all;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    flex-direction: row;
+}
+
+.expandButton:hover {
+    width: 100%;
+    height: 20px;
+    background-color: var(--unity-colors-highlight-background-hover-lighter);
+    -unity-font-style: bold;
+    font-size: 15px;
+    transition-duration: 0.2s;
+}
+
+.expandButton:active {
+    font-size: 14px;
+}
+
+.expandButton2 {
+    flex-grow: 1;
+    width: 100%;
+    height: 20px;
+    background-color: rgb(123, 93, 95);
+    -unity-font-style: bold;
+    font-size: 14px;
+    transition-duration: 0.2s;
+    transition-property: all;
+}
+
+.expandButton2:hover {
+    flex-grow: 1;
+    width: 100%;
+    height: 20px;
+    background-color: rgb(144, 95, 99);
+    -unity-font-style: bold;
+    font-size: 15px;
+    transition-duration: 0.2s;
+}
+
+.listButton {
+    margin-top: 0.5px;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0.5px;
+    padding-top: 1px;
+    padding-right: 6px;
+    padding-bottom: 1px;
+    padding-left: 6px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: var(--unity-colors-button-background);
+    font-size: 13px;
+}
+
+.listButton:hover {
+    margin-top: 0.5px;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0.5px;
+    padding-top: 1px;
+    padding-right: 6px;
+    padding-bottom: 1px;
+    padding-left: 6px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: var(--unity-colors-button-background-focus);
+    font-size: 13px;
+}
+
+.listMainButton {
+    -unity-font-style: bold;
+    margin-right: 0;
+    margin-left: 0;
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    height: 20px;
+    transition-duration: 0.2s;
+    border-top-color: var(--unity-colors-button-border);
+    border-right-color: var(--unity-colors-button-border);
+    border-bottom-color: var(--unity-colors-button-border);
+    border-left-color: var(--unity-colors-button-border);
+}
+
+.listMainButton:hover {
+    -unity-font-style: bold;
+    margin-right: 0;
+    margin-left: 0;
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-left-color: rgb(142, 142, 142);
+    border-right-color: rgb(142, 142, 142);
+    border-top-color: rgb(142, 142, 142);
+    border-bottom-color: rgb(142, 142, 142);
+    font-size: 14px;
+    transition-duration: 0.2s;
+}
+
+.listMainButtonActive {
+    -unity-font-style: bold;
+    margin-right: 0;
+    margin-left: 0;
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-left-color: rgb(142, 142, 142);
+    border-right-color: rgb(142, 142, 142);
+    border-top-color: rgb(142, 142, 142);
+    border-bottom-color: rgb(142, 142, 142);
+    background-color: var(--unity-colors-highlight-background-hover);
+    font-size: 13px;
+    transition-duration: 0.2s;
+}
+
+.listMainButtonDimmed {
+    flex-grow: 1;
+    background-color: var(--unity-colors-app_toolbar_button-background);
+    padding-top: 1px;
+    padding-right: 6px;
+    padding-bottom: 1px;
+    padding-left: 6px;
+    margin-bottom: 1px;
+    height: 20px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-color: var(--unity-colors-button-border);
+    border-right-color: var(--unity-colors-button-border);
+    border-bottom-color: var(--unity-colors-button-border);
+    border-left-color: var(--unity-colors-button-border);
+}
+
+.elementAddButton {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 1px;
+    padding-right: 1px;
+    padding-bottom: 1px;
+    padding-left: 1px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    background-color: rgb(86, 144, 82);
+    -unity-font-style: bold;
+    transition-duration: 0.2s;
+}
+
+.elementAddButton:hover {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 1px;
+    padding-right: 1px;
+    padding-bottom: 1px;
+    padding-left: 1px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    background-color: rgb(122, 188, 118);
+    -unity-font-style: bold;
+    transition-duration: 0.2s;
+    font-size: 13px;
+}
+
+.windowTitle {
+    font-size: 20px;
+    -unity-text-align: upper-center;
+    -unity-font-style: bold;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    text-shadow: -9px 10px 0 rgba(0, 0, 0, 0.35);
+}

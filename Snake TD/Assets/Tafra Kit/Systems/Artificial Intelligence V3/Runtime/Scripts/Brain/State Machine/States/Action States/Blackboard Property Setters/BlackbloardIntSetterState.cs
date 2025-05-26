@@ -1,0 +1,34 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TafraKit.AI3;
+using TafraKit.GraphViews;
+
+namespace TafraKit.Internal.AI3
+{
+    [SearchMenuItem("Blackboard Property Setters/Int Setter"), GraphNodeName("Blackboard Int Setter", "Int Setter")]
+    public class BlackbloardIntSetterState : ActionState
+    {
+        [SerializeField] private BlackboardIntSetter propertySetter;
+        [SerializeField] private BlackboardIntGetter value;
+        [SerializeField] private bool completeOnPlay = true;
+
+        protected override void OnInitialize()
+        {
+            propertySetter.Initialize(agent.BlackboardCollection);
+            value.Initialize(agent.BlackboardCollection);
+        }
+
+        protected override void OnPlay()
+        {
+            propertySetter.SetValue(value.Value);
+
+            if (completeOnPlay)
+                Complete();
+        }
+        public override void Update()
+        {
+            propertySetter.SetValue(value.Value);
+        }
+    }
+}

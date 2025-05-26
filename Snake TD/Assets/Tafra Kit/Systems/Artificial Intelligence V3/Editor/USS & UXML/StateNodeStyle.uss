@@ -1,0 +1,188 @@
+.anyStateNode #title {
+    background-color: rgb(91, 140, 127);
+}
+
+.entryStateNode #title {
+    background-color: rgb(48, 128, 69);
+}
+
+.exitStateNode #title {
+    background-color: rgb(178, 75, 75);
+}
+
+.node {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    height: 50px;
+    width: 175px;
+    color: rgb(227, 227, 227);
+}
+
+.mandatoryNode {
+    width: 150px;
+    height: 35px;
+}
+
+.subStateMachineStateNode {
+    height: 60px;
+    width: 200px;
+    font-size: 13px;
+    -unity-font-style: bold;
+}
+
+.subStateMachineStateNode #node-border {
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-bottom-color: rgba(255, 128, 0, 0.5);
+}
+
+.subStateMachineStateNode #selection-border {
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+.behaviourTreeStateNode {
+    font-size: 13px;
+    width: 200px;
+    height: 60px;
+    -unity-font-style: bold;
+}
+
+.behaviourTreeStateNode #node-border {
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-color: rgba(255, 89, 245, 0.5);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.behaviourTreeStateNode #selection-border {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+StatePort {
+    justify-content: center;
+    align-self: center;
+    align-items: stretch;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    position: absolute;
+    flex-grow: 1;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    flex-shrink: 0;
+    visibility: hidden;
+}
+
+#node-border {
+    border-left-color: rgb(25, 25, 25);
+    border-right-color: rgb(25, 25, 25);
+    border-top-color: rgb(25, 25, 25);
+    border-bottom-color: rgb(25, 25, 25);
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    flex-grow: 1;
+    transition-duration: 0.5s;
+}
+
+.activeState #node-border {
+    border-left-color: rgb(0, 255, 13);
+    border-right-color: rgb(0, 255, 13);
+    border-top-color: rgb(0, 255, 13);
+    border-bottom-color: rgb(0, 255, 13);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    transition-duration: 0s;
+}
+
+#title {
+    background-color: rgb(76, 78, 82);
+    flex-grow: 1;
+}
+
+#selection-border {
+    border-left-color: rgba(0, 239, 255, 0.48);
+    border-right-color: rgba(0, 239, 255, 0.48);
+    border-top-color: rgba(0, 239, 255, 0.48);
+    border-bottom-color: rgba(0, 239, 255, 0.48);
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+:hover > #selection-border {
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+}
+
+:selected > #selection-border {
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-left-color: rgba(0, 239, 255, 0.8);
+    border-right-color: rgba(0, 239, 255, 0.8);
+    border-top-color: rgba(0, 239, 255, 0.8);
+    border-bottom-color: rgba(0, 239, 255, 0.8);
+}
+
+:hover:selected > #selection-border {
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-left-color: rgb(0, 239, 255);
+    border-right-color: rgb(0, 239, 255);
+    border-top-color: rgb(0, 239, 255);
+    border-bottom-color: rgb(0, 239, 255);
+}
+
+#title-label {
+    -unity-text-align: middle-center;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    flex-grow: 1;
+}

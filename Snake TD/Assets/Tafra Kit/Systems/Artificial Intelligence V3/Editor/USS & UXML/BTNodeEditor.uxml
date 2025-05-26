@@ -1,0 +1,33 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/Tafra%20Kit/WIP/Artificial%20Intelligence%20V3/Editor/USS%20&amp;%20UXML/BTNodeStyle.uss?fileID=7433441132597879392&amp;guid=5af82b057adb60746b943402000525aa&amp;type=3#BTNodeStyle" />
+    <ui:VisualElement name="node-border">
+        <ui:VisualElement name="input" />
+        <ui:VisualElement name="title">
+            <ui:Label name="type-name" text="EntryState" class="unity-text-element unity-label" style="position: absolute;" />
+            <ui:Label name="title-label" text="EntryState" class="unity-text-element unity-label" />
+            <ui:VisualElement name="title-button-container">
+                <ui:VisualElement name="collapse-button">
+                    <ui:VisualElement name="icon" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="name-change-container" style="flex-grow: 1; position: absolute; width: 100%; height: 100%; justify-content: center; display: none; left: 0; top: 0; right: 0; bottom: 0; align-items: center;">
+                <ui:TextField picking-mode="Ignore" value="filler text" name="name-change-field" style="margin-top: 0; margin-right: 25px; margin-bottom: 0; margin-left: 25px; align-items: stretch; flex-grow: 1; max-height: 30px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="color-strip" class="colorStrip" />
+        <ui:VisualElement name="contents">
+            <ui:VisualElement name="divider" class="horizontal" />
+            <ui:VisualElement name="top">
+                <ui:VisualElement name="divider" class="vertical" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="output" />
+        <ui:VisualElement name="order-container" style="flex-grow: 1; background-color: rgb(92, 95, 99); width: 24px; height: 24px; position: absolute; right: 0; top: 0; border-top-left-radius: 0; border-top-right-radius: 6px; border-bottom-right-radius: 0; border-bottom-left-radius: 6px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0);">
+            <ui:Label tabindex="-1" text="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="execution-order" style="flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-center; -unity-font-style: bold; color: rgb(181, 181, 181); font-size: 15px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="selection-border" picking-mode="Ignore" />
+    <ui:VisualElement name="order-containerx" style="flex-grow: 1; background-color: rgb(106, 108, 114); width: 17px; height: 17px; position: absolute; right: 6px; top: 6px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); display: none;">
+        <ui:Label tabindex="-1" text="1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="execution-orderx" style="flex-grow: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-center; -unity-font-style: bold; color: rgb(181, 181, 181); font-size: 12px;" />
+    </ui:VisualElement>
+</ui:UXML>

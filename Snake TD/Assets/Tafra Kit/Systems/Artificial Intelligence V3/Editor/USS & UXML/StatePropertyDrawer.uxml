@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement name="main-container" style="flex-grow: 1;" />
+    <ui:VisualElement name="transitions-container" style="flex-grow: 1; margin-top: 10px; background-color: rgba(0, 0, 0, 0.28); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px;">
+        <ui:Label tabindex="-1" text="Transitions" parse-escape-sequences="true" display-tooltip-when-elided="true" name="transitions-title" style="-unity-font-style: bold; font-size: 13px; margin-left: 4px; margin-right: 4px; margin-top: 2px; margin-bottom: 2px;" />
+        <ui:VisualElement name="transitions" style="flex-grow: 1;" />
+    </ui:VisualElement>
+</ui:UXML>

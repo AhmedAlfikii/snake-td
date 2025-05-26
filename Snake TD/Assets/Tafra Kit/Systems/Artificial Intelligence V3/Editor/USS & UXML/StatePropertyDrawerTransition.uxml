@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Tafra%20Kit/Systems_WIP/Artificial%20Intelligence%20V3/Editor/USS%20&amp;%20UXML/StatePropertyTransition.uss?fileID=7433441132597879392&amp;guid=a9ee897c8f9668441be83320ac69a198&amp;type=3#StatePropertyTransition" />
+    <ui:VisualElement name="transition-container" style="flex-grow: 1; margin-bottom: 3px;">
+        <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="header-button" class="header">
+            <ui:Label tabindex="-1" text="Wait &gt; Debug Log" parse-escape-sequences="true" display-tooltip-when-elided="true" name="transition-title" style="padding-left: 4px;" />
+            <ui:VisualElement name="buttons-container" style="flex-grow: 1; justify-content: flex-end; flex-direction: row;">
+                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="down-button" style="min-height: 19px; padding-right: 0; padding-left: 0; min-width: 19px;">
+                    <ui:VisualElement name="down-icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Editor%20Default%20Resources/Tafra%20Kit/Icons/d_Down_Arrow.png?fileID=2800000&amp;guid=709e78700898e69418af4100a0f1d6e7&amp;type=3#d_Down_Arrow&quot;); margin-top: 3px; margin-right: 3px; margin-bottom: 3px; margin-left: 3px;" />
+                </ui:Button>
+                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="up-button" style="min-height: 19px; padding-right: 0; padding-left: 0; min-width: 19px;">
+                    <ui:VisualElement name="up-icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Editor%20Default%20Resources/Tafra%20Kit/Icons/d_Arrow_Up.png?fileID=2800000&amp;guid=62c41c4322cfdd14f8bf26fb200f952e&amp;type=3#d_Arrow_Up&quot;); margin-top: 3px; margin-right: 3px; margin-bottom: 3px; margin-left: 3px;" />
+                </ui:Button>
+            </ui:VisualElement>
+        </ui:Button>
+        <ui:VisualElement name="content" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.09); margin-top: 5px; margin-left: 20px; margin-bottom: 10px;" />
+    </ui:VisualElement>
+</ui:UXML>

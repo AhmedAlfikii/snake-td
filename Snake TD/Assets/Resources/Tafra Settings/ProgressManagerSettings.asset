@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b4718a7aa80c1e47a8bde43e24f679e, type: 3}
+  m_Name: ProgressManagerSettings
+  m_EditorClassIdentifier: 
+  levels: []
+  runsCount: {fileID: 0}
+  clearsCount: {fileID: 0}
+  levelScenesStartBuildIndex: 2
+  editorLevel: {fileID: 0}

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efaefefb2416c8e42b9c959bc132ac11, type: 3}
+  m_Name: shoes_4
+  m_EditorClassIdentifier: 
+  category:
+    value: 
+    scriptableString: {fileID: 11400000, guid: 575f8c873813a7044a462891eb52d469, type: 2}
+  customizationPrefab: {fileID: 7004404761658237238, guid: f9f9ef75f52dc3048ba01eac50464079,
+    type: 3}
+  rootBoneName: mixamorig:RightLeg
+  boneNames:
+  - mixamorig:LeftLeg
+  - mixamorig:LeftFoot
+  - mixamorig:LeftToeBase
+  - mixamorig:RightLeg
+  - mixamorig:RightFoot
+  - mixamorig:RightToeBase
+  extraBonesData:
+    Exists: 0
+    ParentBoneName: 
+    LocalPosition: {x: 0, y: 0, z: 0}
+    LocalRotation: {x: 0, y: 0, z: 0, w: 0}

@@ -1,0 +1,21 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Tafra%20Kit/WIP/Artificial%20Intelligence%20V3/Editor/USS%20&amp;%20UXML/AIBrainWindow.uss?fileID=7433441132597879392&amp;guid=66e909f779d2d134d9547430a59a34ec&amp;type=3#AIBrainWindow" />
+    <TafraKitEditor.AI3.SplitView fixed-pane-initial-dimension="300" view-data-key="brain-window-split-view" style="display: none;">
+        <ui:VisualElement name="side-panel" style="flex-grow: 1;">
+            <uie:Toolbar name="side-panel-toolbar">
+                <uie:ToolbarToggle label="Layers" name="layers-tab" class="sidePanelTab" />
+                <uie:ToolbarToggle label="Inspector" name="inspector-tab" class="sidePanelTab" />
+            </uie:Toolbar>
+            <ui:VisualElement name="side-panel-container" style="flex-grow: 1; align-items: flex-start;">
+                <TafraKitEditor.AI3.InspectorView name="InspectorView" style="flex-grow: 1; align-items: stretch; justify-content: flex-start; width: 100%; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="main-panel" style="flex-grow: 1;" />
+    </TafraKitEditor.AI3.SplitView>
+    <ui:VisualElement name="main-container" style="flex-grow: 1;">
+        <uie:Toolbar>
+            <uie:ToolbarBreadcrumbs />
+        </uie:Toolbar>
+        <ui:VisualElement name="graphContainer" style="flex-grow: 1;" />
+    </ui:VisualElement>
+</ui:UXML>

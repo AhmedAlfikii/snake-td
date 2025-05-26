@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/Tafra%20Kit/UI%20Toolkit%20Assets/Style%20Sheets/Style.uss?fileID=7433441132597879392&amp;guid=01865b0fba667d34480a8c6b00dd6b54&amp;type=3#Style" />
+    <uie:PropertyField binding-path="defaultState" />
+    <uie:PropertyField binding-path="useUnscaledTime" />
+    <uie:PropertyField binding-path="deactivateWhileHidden" />
+</ui:UXML>

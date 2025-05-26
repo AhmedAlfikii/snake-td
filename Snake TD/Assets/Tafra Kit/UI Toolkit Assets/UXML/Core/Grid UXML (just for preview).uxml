@@ -1,0 +1,26 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Game/Scripts/Editor/Grid%20Handling/Grid%20Styling.uss?fileID=7433441132597879392&amp;guid=8f381a3c545ff5f468e1636d2277f7ce&amp;type=3#Grid Styling" />
+    <engine:VisualElement name="grid" style="flex-grow: 1; background-color: rgb(56, 56, 56);">
+        <engine:VisualElement name="row" class="row" style="height: 45px; margin-bottom: 2.5px; margin-top: 2.5px;">
+            <engine:Button text="(0, 0)" name="Button" class="tile" style="width: 45px; height: 45px; margin-right: 2.5px;" />
+            <engine:Button text="(0, 0)" name="Button" class="tile" style="width: 45px; height: 45px; margin-right: 2.5px; margin-left: 2.5px;" />
+            <engine:Button text="(0, 0)" name="Button" class="tile" style="width: 45px; height: 45px; margin-right: 2.5px; margin-left: 2.5px;" />
+            <engine:Button text="(0, 0)" name="Button" class="tile" style="width: 45px; height: 45px; margin-right: 2.5px; margin-left: 2.5px;" />
+            <engine:Button text="(0, 0)" name="Button" class="tile tileActive" style="width: 45px; height: 45px; margin-left: 2.5px;" />
+        </engine:VisualElement>
+        <engine:VisualElement name="row" class="row" style="height: 45px; margin-bottom: 2.5px; margin-top: 2.5px;">
+            <engine:Button text="(0, 0)" name="Button" class="tile" style="width: 45px; height: 45px; margin-right: 2.5px;" />
+            <engine:Button text="(0, 0)" name="Button" class="tile" style="width: 45px; height: 45px; margin-right: 2.5px; margin-left: 2.5px;" />
+            <engine:Button text="(0, 0)" name="Button" class="tile tileMain" style="width: 45px; height: 45px; margin-right: 2.5px; margin-left: 2.5px;" />
+            <engine:Button text="(0, 0)" name="Button" class="tile tileActive" style="width: 45px; height: 45px; margin-right: 2.5px; margin-left: 2.5px;" />
+            <engine:Button text="(0, 0)" name="Button" class="tile" style="width: 45px; height: 45px; margin-left: 2.5px;" />
+        </engine:VisualElement>
+        <engine:VisualElement name="row" class="row" style="height: 45px; margin-bottom: 2.5px; margin-top: 2.5px;">
+            <engine:Button text="(0, 0)" name="Button" class="tile" style="width: 45px; height: 45px; margin-right: 2.5px;" />
+            <engine:Button text="(0, 0)" name="Button" class="tile" style="width: 45px; height: 45px; margin-right: 2.5px; margin-left: 2.5px;" />
+            <engine:Button text="(0, 0)" name="Button" class="tile" style="width: 45px; height: 45px; margin-right: 2.5px; margin-left: 2.5px;" />
+            <engine:Button text="(0, 0)" name="Button" class="tile" style="width: 45px; height: 45px; margin-right: 2.5px; margin-left: 2.5px;" />
+            <engine:Button text="(0, 0)" name="Button" class="tile" style="width: 45px; height: 45px; margin-left: 2.5px;" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

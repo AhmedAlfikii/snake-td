@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efaefefb2416c8e42b9c959bc132ac11, type: 3}
+  m_Name: jacket_03
+  m_EditorClassIdentifier: 
+  category:
+    value: 
+    scriptableString: {fileID: 11400000, guid: 5876cbe1e817b27499454397b0fdd0e5, type: 2}
+  customizationPrefab: {fileID: 8484664008813383675, guid: 2f573ae2a5d53c9489330a37f8b040a4,
+    type: 3}
+  rootBoneName: mixamorig:Hips
+  boneNames:
+  - mixamorig:Hips
+  - mixamorig:Spine
+  - mixamorig:Spine1
+  - mixamorig:Spine2
+  - mixamorig:Neck
+  - mixamorig:Head
+  - mixamorig:LeftShoulder
+  - mixamorig:LeftArm
+  - mixamorig:LeftForeArm
+  - mixamorig:LeftHand
+  - mixamorig:LeftHandThumb1
+  - mixamorig:LeftHandThumb2
+  - mixamorig:RightShoulder
+  - mixamorig:RightArm
+  - mixamorig:RightForeArm
+  - mixamorig:RightHand
+  - mixamorig:RightHandThumb1
+  - mixamorig:RightHandThumb2
+  - mixamorig:LeftUpLeg
+  - mixamorig:RightUpLeg
+  extraBonesData:
+    Exists: 0
+    ParentBoneName: 
+    LocalPosition: {x: 0, y: 0, z: 0}
+    LocalRotation: {x: 0, y: 0, z: 0, w: 0}

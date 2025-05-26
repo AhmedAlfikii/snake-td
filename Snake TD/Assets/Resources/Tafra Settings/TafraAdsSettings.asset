@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdb5226ce6536ba4584cff8d6034f66a, type: 3}
+  m_Name: TafraAdsSettings
+  m_EditorClassIdentifier: 
+  enabled: 0
+  autoLoadInterstitialAds: 0
+  autoLoadRewardedAds: 0
+  defaultInterstitialAlert: {fileID: 0}
+  cancelInterstitialAlertOnSceneChange: 1
+  bannerBGColor: {r: 1, g: 1, b: 1, a: 1}
+  bannerSafeAreaTopMargin: 0
+  bannerSafeAreaBotMargin: 0.09
+  bannerSafeAreaLeftMargin: 0
+  bannerSafeAreaRightMargin: 0
+  savePrefsOnAdShow: 1
+  noAdsSF: {fileID: 0}

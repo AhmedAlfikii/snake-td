@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Tafra%20Kit/UI%20Toolkit%20Assets/Style%20Sheets/General%20Style%201.uss?fileID=7433441132597879392&amp;guid=55bfb889de0fe2749b5a200f549f16ae&amp;type=3#General Style 1" />
+    <TafraKitEditor.GraphViews.SplitView fixed-pane-initial-dimension="180">
+        <ui:VisualElement name="settings-list-container" style="flex-grow: 1; margin-top: 5px; margin-bottom: 5px;">
+            <uie:ToolbarSearchField name="search-bar" style="width: auto;" />
+            <ui:TreeView name="settings-tree" />
+        </ui:VisualElement>
+        <ui:VisualElement name="settings-container" style="flex-grow: 1; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 10px;">
+            <ui:Label tabindex="-1" text="Title" parse-escape-sequences="true" display-tooltip-when-elided="true" name="title" class="header-2" />
+            <ui:VisualElement name="description-container" class="description-box">
+                <ui:Label tabindex="-1" text="This is a description box, what can you say about it?" parse-escape-sequences="true" display-tooltip-when-elided="true" name="description" style="white-space: normal;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="content" style="flex-grow: 1; margin-top: 10px;" />
+        </ui:VisualElement>
+    </TafraKitEditor.GraphViews.SplitView>
+</ui:UXML>

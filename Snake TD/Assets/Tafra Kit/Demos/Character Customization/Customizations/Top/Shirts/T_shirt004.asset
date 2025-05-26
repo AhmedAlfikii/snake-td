@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efaefefb2416c8e42b9c959bc132ac11, type: 3}
+  m_Name: T_shirt004
+  m_EditorClassIdentifier: 
+  category:
+    editorDisplayValue: 
+    value: 
+    scriptableVariable: {fileID: 0}
+  customizationPrefab: {fileID: 9195085221291041448, guid: db374e89fdbe1274fbcd69ea2677b1a6,
+    type: 3}
+  rootBoneName: mixamorig:Hips
+  boneNames:
+  - mixamorig:Hips
+  - mixamorig:Spine
+  - mixamorig:Spine1
+  - mixamorig:Spine2
+  - mixamorig:Neck
+  - mixamorig:Head
+  - mixamorig:LeftShoulder
+  - mixamorig:LeftArm
+  - mixamorig:LeftForeArm
+  - mixamorig:LeftHand
+  - mixamorig:LeftHandThumb1
+  - mixamorig:LeftHandThumb2
+  - mixamorig:RightShoulder
+  - mixamorig:RightArm
+  - mixamorig:RightForeArm
+  - mixamorig:RightHand
+  - mixamorig:RightHandThumb1
+  - mixamorig:RightHandThumb2
+  - mixamorig:LeftUpLeg
+  - mixamorig:RightUpLeg
+  extraBonesData:
+    Exists: 0
+    BoneChains: []

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efaefefb2416c8e42b9c959bc132ac11, type: 3}
+  m_Name: hair_3
+  m_EditorClassIdentifier: 
+  category:
+    editorDisplayValue: 
+    value: 
+    scriptableVariable: {fileID: 0}
+  customizationPrefab: {fileID: 5984120969676886397, guid: 4112033f622d41e4fa33ade2bb6f227f,
+    type: 3}
+  rootBoneName: mixamorig:Head
+  boneNames:
+  - mixamorig:Head
+  - hair_3_J1
+  - hair_3_J2
+  - hair_3_J3
+  - hair_3_J4
+  - hair_3_J5
+  - hair_3_J6
+  - hair_3_J7
+  - hair_3_J8
+  extraBonesData:
+    Exists: 0
+    BoneChains: []

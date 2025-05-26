@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Tafra%20Kit/UI%20Toolkit%20Assets/Style%20Sheets/Style.uss?fileID=7433441132597879392&amp;guid=01865b0fba667d34480a8c6b00dd6b54&amp;type=3#Style" />
+    <ui:GroupBox name="Container" class="sectionLessDark" style="margin-top: 2px; margin-bottom: 2px;">
+        <ui:VisualElement name="Header" style="flex-grow: 1; flex-direction: row-reverse; justify-content: space-between;">
+            <ui:Label tabindex="-1" text="Title" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="-unity-font-style: bold; color: rgb(119, 255, 241);" />
+            <ui:Label tabindex="-1" text="Property" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PropertyName" style="-unity-font-style: normal;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="PropertiesBox" style="flex-grow: 1;" />
+    </ui:GroupBox>
+</ui:UXML>

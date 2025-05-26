@@ -1,0 +1,38 @@
+.header {
+    flex-direction: row;
+    margin-top: 1px;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+    background-image: none;
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    transition-duration: 0.2s;
+}
+
+.header:hover {
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-left-color: rgba(255, 255, 255, 0.16);
+    border-right-color: rgba(255, 255, 255, 0.16);
+    border-top-color: rgba(255, 255, 255, 0.16);
+    border-bottom-color: rgba(255, 255, 255, 0.16);
+    background-color: rgba(99, 99, 99, 0.35);
+}

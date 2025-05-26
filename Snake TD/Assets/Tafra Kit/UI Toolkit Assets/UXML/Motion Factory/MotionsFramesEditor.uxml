@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Tafra%20Kit/UI%20Toolkit%20Assets/Style%20Sheets/Style.uss?fileID=7433441132597879392&amp;guid=01865b0fba667d34480a8c6b00dd6b54&amp;type=3#Style[UNSUPPORTED_IN_UI_BUILDER]" />
+    <ui:GroupBox class="sectionOutlined" style="padding-top: 1px; padding-right: 1px; padding-bottom: 1px; padding-left: 1px; margin-top: 2px; margin-bottom: 2px;">
+        <ui:VisualElement name="Header" focusable="false" class="expandButton2" style="-unity-text-align: upper-center; flex-direction: row; width: auto;">
+            <ui:VisualElement name="VisualElement" style="height: 100%; width: 20px; background-color: rgba(255, 255, 255, 0);" />
+            <ui:Label tabindex="-1" text="Motion Frames" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PropertyName" style="align-self: center; flex-grow: 1; color: rgb(226, 226, 226);" />
+            <ui:VisualElement name="HeaderIcon" style="height: 20px; width: 20px; align-self: center; background-image: url(&apos;project://database/Assets/Editor%20Default%20Resources/Tafra%20Kit/Icons/d_Tafra_Toolbar%20Plus.png?fileID=2800000&amp;guid=cee7fc89d897db340b420268689e44ab&amp;type=3#d_Tafra_Toolbar Plus&apos;); -unity-background-image-tint-color: rgb(130, 51, 51);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Content" style="flex-grow: 1;">
+            <ui:VisualElement name="NoFramesInfo" style="flex-grow: 1; margin-top: 10px; margin-bottom: 10px;">
+                <ui:Label tabindex="-1" text="No frames added (press the button below)." parse-escape-sequences="true" display-tooltip-when-elided="true" style="align-self: center;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="FramesList" style="align-items: stretch; justify-content: space-between;" />
+            <ui:Button text="Add Frame" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AddFrameButton" focusable="false" class="listMainButton" />
+        </ui:VisualElement>
+    </ui:GroupBox>
+</ui:UXML>

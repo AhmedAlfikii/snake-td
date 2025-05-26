@@ -1,0 +1,1 @@
+This Component is based on "Quick Outline" that is developed by Chris Nolet (c) 2018

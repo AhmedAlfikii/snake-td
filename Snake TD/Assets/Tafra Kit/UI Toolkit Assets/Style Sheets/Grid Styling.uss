@@ -1,0 +1,100 @@
+.row {
+    flex-direction: row;
+    justify-content: center;
+}
+
+.tile {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    background-color: rgb(12, 12, 12);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    color: rgb(161, 161, 161);
+}
+
+.tile:hover {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    background-color: rgb(67, 82, 70);
+    border-left-color: rgb(88, 113, 93);
+    border-right-color: rgb(88, 113, 93);
+    border-top-color: rgb(88, 113, 93);
+    border-bottom-color: rgb(88, 113, 93);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    color: rgb(161, 161, 161);
+}
+
+.tileMain {
+    background-color: rgb(92, 197, 114);
+    -unity-font-style: bold;
+    color: rgb(255, 255, 71);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-left-color: rgb(255, 254, 0);
+    border-right-color: rgb(255, 254, 0);
+    border-top-color: rgb(255, 254, 0);
+    border-bottom-color: rgb(255, 254, 0);
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+.tileActive {
+    background-color: rgb(118, 173, 130);
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-left-color: rgba(255, 254, 0, 0);
+    border-right-color: rgba(255, 254, 0, 0);
+    border-top-color: rgba(255, 254, 0, 0);
+    border-bottom-color: rgba(255, 254, 0, 0);
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+.tileActive:hover {
+    background-color: rgb(101, 70, 70);
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-left-color: rgb(168, 0, 17);
+    border-right-color: rgb(168, 0, 17);
+    border-top-color: rgb(168, 0, 17);
+    border-bottom-color: rgb(168, 0, 17);
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+}

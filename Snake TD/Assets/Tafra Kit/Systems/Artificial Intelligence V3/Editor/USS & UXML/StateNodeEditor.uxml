@@ -1,0 +1,25 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/Tafra%20Kit/WIP/Artificial%20Intelligence%20V3/Editor/USS%20&amp;%20UXML/StateNodeStyle.uss?fileID=7433441132597879392&amp;guid=8acfc737c103cdb498feee8107b75cce&amp;type=3#StateNodeStyle" />
+    <ui:VisualElement name="node-border">
+        <ui:VisualElement name="title">
+            <ui:Label name="title-label" text="EntryState" class="unity-text-element unity-label" />
+            <ui:VisualElement name="title-button-container">
+                <ui:VisualElement name="collapse-button">
+                    <ui:VisualElement name="icon" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="name-change-container" style="flex-grow: 1; position: absolute; width: 100%; height: 100%; justify-content: center; display: none; left: 0; top: 0; right: 0; bottom: 0;">
+                <ui:TextField picking-mode="Ignore" value="filler text" name="name-change-field" style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; flex-grow: 1;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="contents">
+            <ui:VisualElement name="divider" class="horizontal" />
+            <ui:VisualElement name="top">
+                <ui:VisualElement name="input" />
+                <ui:VisualElement name="divider" class="vertical" />
+                <ui:VisualElement name="output" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="selection-border" picking-mode="Ignore" />
+</ui:UXML>

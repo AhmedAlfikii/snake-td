@@ -1,0 +1,189 @@
+.mainContainer {
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-left-color: rgba(0, 0, 0, 0.62);
+    border-right-color: rgba(0, 0, 0, 0.62);
+    border-top-color: rgba(0, 0, 0, 0.62);
+    border-bottom-color: rgba(0, 0, 0, 0.62);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    margin-top: 10px;
+}
+
+.header {
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: rgba(0, 0, 0, 0.61);
+    -unity-font-style: bold;
+    font-size: 15px;
+    height: 24px;
+    -unity-text-align: middle-center;
+    align-items: center;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    color: rgb(210, 210, 210);
+}
+
+.header:hover {
+    background-color: rgba(0, 0, 0, 0.89);
+}
+
+.header:active {
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+.title {
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    width: 147px;
+}
+
+.content {
+    padding-bottom: 6px;
+}
+
+.additionalPropertiesContainer {
+    flex-grow: 1;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.noElementsBox {
+    flex-grow: 1;
+    justify-content: center;
+    align-self: center;
+    -unity-font-style: normal;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.addButton {
+    margin-bottom: 5px;
+    height: 22px;
+    margin-top: -1px;
+    margin-right: 50px;
+    margin-left: 50px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    background-color: rgba(183, 183, 183, 0.12);
+    -unity-font-style: bold;
+    -unity-text-align: upper-center;
+    align-self: center;
+    flex-grow: 1;
+    max-height: 22px;
+    max-width: 240px;
+    width: 100%;
+}
+
+.addButton:hover {
+    background-color: rgba(149, 149, 149, 0.22);
+}
+
+.addButton:active {
+    background-color: rgba(149, 149, 149, 0.43);
+}
+
+.elementBox {
+    border-left-color: rgba(0, 0, 0, 0.42);
+    border-right-color: rgba(0, 0, 0, 0.42);
+    border-top-color: rgba(0, 0, 0, 0.42);
+    border-bottom-color: rgba(0, 0, 0, 0.42);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    margin-right: 6px;
+    margin-left: 6px;
+    padding-right: 0;
+    padding-left: 0;
+    margin-bottom: 0;
+    margin-top: 6px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.elementHeader {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 4px;
+    height: 20px;
+    -unity-text-align: middle-left;
+    justify-content: center;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+    font-size: 12px;
+    color: rgb(210, 210, 210);
+    -unity-font-style: bold;
+}
+
+.elementHeader:hover {
+    background-color: rgba(0, 0, 0, 0.51);
+}
+
+.elementHeader:active {
+    background-color: rgba(0, 0, 0, 0.82);
+}
+
+.elementContent {
+    margin-top: 2px;
+    margin-right: 4px;
+    margin-bottom: 3px;
+    margin-left: 14px;
+}
