@@ -10,26 +10,25 @@ public class SnakeSegment : MonoBehaviour
     [SerializeField] private float speed = 2f;
     [SerializeField] private float backingSpeed = 3f;
     [SerializeField] private bool active = true;
-    [SerializeField] private float distanceThreshold = 1f;
+    [SerializeField] private float spacing = 1f;
 
     private SnakeSegment previousSegment;
     private SnakeSegment nextSegment;
 
-    [SerializeField] private bool linkToPreviousSegment = false;
+    private bool isTail = false;
+    private bool isHead = false;
 
     private int type;
     private Material mat;
 
     private float t = 0f;
     private float tDelta = 0f;
-    private float dist = 0f;
-    private float sqrPrevDistance = 0f;
     private UnityEvent onDead = new UnityEvent();
     private UnityEvent onReachedEnd = new UnityEvent();
     private UnityEvent onEndMove = new UnityEvent();
-    private Spline spline;
     private Healthy healthy;
     private new Renderer renderer;
+
     public Healthy Healthy => healthy;
     public UnityEvent OnDead => onDead;
     public UnityEvent OnReachedEnd => onReachedEnd;
@@ -61,25 +60,22 @@ public class SnakeSegment : MonoBehaviour
     {
         healthy.Events.OnDeath.RemoveListener(Die);
     }
-    private void Start()
-    {
-        t = GetClosestTOnSpline(transform.position);
-    }
     void Update()
     {
         if (active)
             MoveAlongSpline();
     }
-    public void Initialize(SplineContainer spline, float speed, bool active, float distanceThreshold)
+    public void Initialize(SplineContainer spline, float speed, bool active, float spacing, float t = 0)
     {
         splineContainer = spline;
-        this.spline = splineContainer.Spline;
 
         this.speed = speed;
         backingSpeed = speed; //TODO Change
 
         this.active = active;
-        this.distanceThreshold = distanceThreshold;
+        this.spacing = spacing;
+
+        this.t = t; 
     }
     public void SetType(int type, Material mat)
     {
@@ -88,18 +84,30 @@ public class SnakeSegment : MonoBehaviour
 
         SetMaterial();
     }
-    public void SetLinkedSegment(SnakeSegment previousSegment)
+    public void SetPreviousSegment(SnakeSegment previousSegment)
     {
-        linkToPreviousSegment = true;
         this.previousSegment = previousSegment;
     }
     public void Die(Healthy healthy, HitInfo hitInfo)
     {
         if (nextSegment)
-            nextSegment.SetLinkedSegment(previousSegment);
+        {
+            nextSegment.SetPreviousSegment(previousSegment);
+
+            if (isTail)
+                nextSegment.SetTail();
+        }
 
         if (previousSegment)
+        {
             previousSegment.nextSegment = nextSegment;
+
+            if (isHead)
+            {
+                previousSegment.SetHead();
+                onEndMove?.Invoke();
+            }
+        }
 
         onDead?.Invoke();
         Destroy(gameObject);
@@ -108,25 +116,35 @@ public class SnakeSegment : MonoBehaviour
     {
         bool forwards = true;
 
-        if (linkToPreviousSegment && previousSegment)
+        if (isTail && nextSegment)
         {
-            //tDelta = t - previousSegment.T;
+            tDelta = nextSegment.T - t;
 
-            //dist =  (spline.GetLength() * tDelta) / distanceThreshold;
+            if (tDelta <= spacing)
+            {
+                return;
+            }
+        }
 
-            //if (dist > distanceThreshold)
+        if (isHead && EndReached && 1 - t > 0.01)
+        {
+            RecursiveEndReachSet(false);
+            onEndMove?.Invoke();
 
-            sqrPrevDistance = (transform.position - previousSegment.transform.position).sqrMagnitude;
-        
-            if (sqrPrevDistance > distanceThreshold * distanceThreshold)
+            return;
+        }
+
+        if (previousSegment)
+        {
+            tDelta = t - previousSegment.T;
+           
+            if (tDelta > spacing)
             {
                 forwards = false;
 
                 if (EndReached)
                 {
-                    EndReached = false;
-
-                    Debug.Log($"FF->End move");
+                    RecursiveEndReachSet(false);
 
                     onEndMove?.Invoke();
                 }
@@ -143,45 +161,46 @@ public class SnakeSegment : MonoBehaviour
         if (forwards)
             t += (speed / splineContainer.Spline.GetLength()) * Time.deltaTime;
         else
-            t -= (backingSpeed / splineContainer.Spline.GetLength()) * Time.deltaTime;
-
-        spline.Evaluate(t, out var localPosition, out var localTangent, out _);
-
-        Vector3 worldPosition = splineContainer.transform.TransformPoint(localPosition);
-        Vector3 worldTangent = splineContainer.transform.TransformDirection(localTangent);
-
-        transform.position = worldPosition;
-        transform.rotation = Quaternion.LookRotation(worldTangent);
-
-        if (t >= 1f)
         {
-            onReachedEnd?.Invoke();
+
+            t -= (backingSpeed / splineContainer.Spline.GetLength()) * Time.deltaTime;
+        }
+
+        splineContainer.Evaluate(t, out var worldPosition, out var worldTangent, out _);
+
+        transform.SetPositionAndRotation(worldPosition, Quaternion.LookRotation(worldTangent));
+
+        if (t >= 0.99f)
+        {
+            OnEndReached();
         }
     }
-
-    private float GetClosestTOnSpline(Vector3 worldPosition, int resolution = 100)
+    private void OnEndReached()
     {
-        float closestT = 0f;
-        float minDistance = float.MaxValue;
+        RecursiveEndReachSet(true);
+        onReachedEnd?.Invoke();
+    }
+    private void RecursiveEndReachSet(bool value)
+    {
+        EndReached = value;
 
-        for (int i = 0; i <= resolution; i++)
-        {
-            float currentT = i / (float)resolution;
-            spline.Evaluate(currentT, out var localPos, out _, out _);
-            Vector3 worldPos = splineContainer.transform.TransformPoint(localPos);
-
-            float dist = Vector3.Distance(worldPosition, worldPos);
-            if (dist < minDistance)
-            {
-                minDistance = dist;
-                closestT = currentT;
-            }
-        }
-
-        return closestT;
+        if (previousSegment)
+            previousSegment.RecursiveEndReachSet(value);
     }
     private void SetMaterial()
     {
         renderer.material = mat;
+    }
+    public void SetTail()
+    {
+        isTail = true;
+    }
+    public void SetHead()
+    {
+        isHead = true;
+    }
+    public void Activate()
+    {
+        active = true;
     }
 }

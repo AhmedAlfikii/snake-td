@@ -1,25 +1,39 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TafraKit.Healthies;
-using Unity.Mathematics;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Splines;
 
 public class SnakeHandler : MonoBehaviour
 {
-
+    [Header("References")]
     [SerializeField] private SegmentTypesSettings settings;
     [SerializeField] private SplineContainer splineContainer;
     [SerializeField] private SnakeSegment segmentPrefab;
+
+    [Header("Snake Properties")]
     [SerializeField] private int segmentCount = 5;
     [SerializeField] private float spacing = 1f;
+    [SerializeField] private float spawnOffset = 0f;
     [SerializeField] private float speed = 2f;
-    [SerializeField] private int testIndx = 0;
     [SerializeField] private int maxColors = 5;
 
+    [Header("Testing")]
+    [SerializeField] private TMP_Dropdown testDropDown;
+    [SerializeField] private int testIndx = 0;
+    [SerializeField] private int rndToDstry = 2;
+    [SerializeField] private float gizmoRadius = .5f;
+
+    private UnityEvent onAllSegmentsDead = new UnityEvent();
     private List<SnakeSegment> segments = new List<SnakeSegment>();
     private SnakeSegment headSegment;
+
+    private Dictionary<int, Queue<SnakeSegment>> typeToSegmentDict = new Dictionary<int, Queue<SnakeSegment>>();
+    private int remainingSegments;
+    private bool isInitialized = false;
+    public UnityEvent OnAllSegmentsDead => onAllSegmentsDead;
 
     private void Awake()
     {
@@ -27,27 +41,63 @@ public class SnakeHandler : MonoBehaviour
     }
     void Start()
     {
-        Spline spline = splineContainer.Spline;
-        float totalLength = spline.GetLength();
+        PopulateTestDropdown();
+
+        InitializeSnake();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            DestroySegment();
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            DestroyRandom();
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            RandomSplitSum(30, 5);
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            ActivateSnake();
+        }
+    }
+   
+    private void InitializeSnake()
+    {
+        float totalLength = splineContainer.Spline.GetLength();
 
         List<int> splits = RandomSplitSum(segmentCount, maxColors);
         List<int> splitsRemaining = new List<int>(splits);
         int j = 0;
+        remainingSegments = segmentCount;
+
+        //List<Vector3> segmentPoints = new List<Vector3>();
+        //for (int i = 0; i < segmentCount; i++)
+        //{
+        //    float t = spawnOffset + (spacing / totalLength) * i;
+
+        //    spline.Evaluate(t, out var localPos, out var localTangent, out _);
+        //    Vector3 worldPos = splineContainer.transform.TransformPoint(localPos);
+        //    Vector3 worldTangent = splineContainer.transform.TransformDirection(localTangent);
+
+        //    segmentPoints.Add(worldPos);
+        //}
+
         for (int i = 0; i < segmentCount; i++)
         {
             if (splitsRemaining[j] <= 0)
                 j++;
 
-            float distanceAlongSpline = i * spacing;
-            float t = FindTAtDistance(spline, distanceAlongSpline, 100);
+            float t = spawnOffset + (spacing / totalLength) * i;
 
-            spline.Evaluate(t, out var localPos, out var localTangent, out _);
-            Vector3 worldPos = splineContainer.transform.TransformPoint(localPos);
-            Vector3 worldTangent = splineContainer.transform.TransformDirection(localTangent);
+            splineContainer.Evaluate(t, out var worldPos, out var worldTangent, out _);
 
             SnakeSegment segment = Instantiate(segmentPrefab, worldPos, Quaternion.LookRotation(worldTangent));
 
-            segment.Initialize(splineContainer, speed, true, spacing);
+            segment.Initialize(splineContainer, speed, false, spacing / totalLength, t);
 
             Material selectedMat = settings.GetMaterial(j);
 
@@ -55,27 +105,124 @@ public class SnakeHandler : MonoBehaviour
 
             splitsRemaining[j]--;
 
+            segment.OnDead.AddListener(OnSegmentDead);
+
+            void OnSegmentDead()
+            {
+                segment.OnDead.RemoveListener(OnSegmentDead);
+
+                remainingSegments--;
+
+                if (remainingSegments <= 0)
+                {
+                    OnSnakeDied();
+                }
+            }
+
             segments.Add(segment);
         }
 
         for (int i = 0; i < segments.Count; i++)
         {
-            segments[i].SetLinkedSegment(segments[Mathf.Max(0, i - 1)]);
+            if (i > 0)
+                segments[i].SetPreviousSegment(segments[i - 1]);
+            else
+                segments[i].SetTail();
 
             if (i < segments.Count - 1)
                 segments[i].NextSegment = segments[i + 1];
+            else
+                segments[i].SetHead();
+        }
+
+        for (int i = segments.Count - 1; i >= 0; i--)
+        {
+            SnakeSegment snakeSegment = segments[i];
+            if (!typeToSegmentDict.ContainsKey(snakeSegment.Type))
+            {
+                typeToSegmentDict[snakeSegment.Type] = new Queue<SnakeSegment>();
+            }
+
+            typeToSegmentDict[snakeSegment.Type].Enqueue(snakeSegment);
         }
 
         headSegment = segments[segments.Count - 1];
-        headSegment.OnReachedEnd.AddListener(OnHeadReachedEnd);
-        headSegment.OnEndMove.AddListener(OnHeadEndMove);
+
+        isInitialized = true;
     }
-    private void OnDestroy()
+    public void ActivateSnake()
     {
-        headSegment.OnReachedEnd.RemoveListener(OnHeadReachedEnd);
-        headSegment.OnEndMove.RemoveListener(OnHeadEndMove);
+        for (int i = 0; i < segments.Count; i++)
+        {
+            segments[i].Activate();
+        }
     }
-    public List<int> RandomSplitSum(int total, int parts)
+
+    [ContextMenu("Reset Snake")]
+    public void ResetSnake()
+    {
+        for (int i = 0; i < segments.Count; i++)
+        {
+            segments[i].Die(null, new HitInfo());
+        }
+        segments.Clear();
+
+        InitializeSnake();
+    }
+    private void DestroySegment()
+    {
+        if (typeToSegmentDict.TryGetValue(testIndx, out var queue) && queue.Count > 0)
+        {
+            SnakeSegment snakeSegment = queue.Dequeue();
+
+            snakeSegment.Healthy.TakeDamage(new HitInfo(1000));
+            segments.Remove(snakeSegment);
+        }
+    }
+    private void DestroyRandom()
+    {
+        for (int i = 0; i < rndToDstry; i++)
+        {
+            testIndx = Random.Range(0, maxColors);
+            DestroySegment();
+        }
+    }
+    private void PopulateTestDropdown()
+    {
+        testDropDown.ClearOptions();
+
+        List<TMP_Dropdown.OptionData> dropdownOptions = new List<TMP_Dropdown.OptionData>();
+
+        for (int i = 0; i < settings.Materials.Count; i++)
+        {
+            Color color = settings.GetMaterial(i).GetColor("_BaseColor");
+            string hexColor = ColorUtility.ToHtmlStringRGB(color);
+            string coloredLabel = $"<color=#{hexColor}>{i}</color>";
+
+            dropdownOptions.Add(new TMP_Dropdown.OptionData(coloredLabel));
+        }
+
+        testDropDown.AddOptions(dropdownOptions);
+        testDropDown.onValueChanged.AddListener(OnDropdownValueChanged);
+    }
+    private void OnDropdownValueChanged(int index)
+    {
+        // Set the label color of the selected option
+        TextMeshProUGUI label = (TextMeshProUGUI)testDropDown.captionText;
+        if (label != null && index >= 0 && index < settings.Materials.Count)
+        {
+            label.color = settings.GetMaterial(index).GetColor("_BaseColor");
+        }
+
+        testIndx = index;
+    }
+    private void OnSnakeDied()
+    {
+        Debug.Log($"FF->Snake Died! GameOver.");
+
+        onAllSegmentsDead?.Invoke();
+    }
+    private List<int> RandomSplitSum(int total, int parts)
     {
         HashSet<int> breaks = new HashSet<int>();
         System.Random rand = new System.Random();
@@ -102,68 +249,17 @@ public class SnakeHandler : MonoBehaviour
 
         return result;
     }
-    private void OnHeadEndMove()
+    private void OnDrawGizmos()
     {
-        for (int i = 0; i < segments.Count; i++)
+        Gizmos.color = Color.red;
+        for (int i = 0; i < segmentCount; i++)
         {
-            segments[i].EndReached = false;
+            //float t = spawnOffset + (i * spacing);
+            float t = spawnOffset + (spacing / splineContainer.Spline.GetLength()) * i;
+
+            splineContainer.Evaluate(t, out var position, out _, out _);
+
+            Gizmos.DrawWireSphere(position, gizmoRadius);
         }
-    }
-    private void OnHeadReachedEnd()
-    {
-        for (int i = 0; i < segments.Count; i++)
-        {
-            segments[i].EndReached = true;
-        }
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            DestroySegment();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            RandomSplitSum(30, 5);
-        }
-    }
-    public void DestroySegment()
-    {
-        if (testIndx >= segments.Count)
-        {
-            Debug.Log($"FF->Incorrect segment index.");
-            return;
-        }
-
-        segments[testIndx].Healthy.TakeDamage(new HitInfo(1000));
-        segments.RemoveAt(testIndx);
-    }
-    float FindTAtDistance(Spline spline, float targetDistance, int resolution = 100)
-    {
-        float totalLength = spline.GetLength();
-        targetDistance = Mathf.Clamp(targetDistance, 0f, totalLength);
-
-        float t = 0f;
-        float step = 1f / resolution;
-        float accumulatedDistance = 0f;
-        float3 prevPoint3;
-        spline.Evaluate(0f, out prevPoint3, out _, out _);
-
-        for (int i = 1; i <= resolution; i++)
-        {
-            float currentT = i * step;
-            spline.Evaluate(currentT, out float3 point, out _, out _);
-
-            float segmentDist = Vector3.Distance(prevPoint3, point);
-            accumulatedDistance += segmentDist;
-
-            if (accumulatedDistance >= targetDistance)
-                return currentT;
-
-            prevPoint3 = point;
-        }
-
-        return 1f;
     }
 }

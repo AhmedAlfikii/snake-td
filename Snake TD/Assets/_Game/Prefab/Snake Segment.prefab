@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7015019842946059123}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.21224, y: -6.4782696, z: -2.0087636}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -126,8 +126,7 @@ MonoBehaviour:
   speed: 2
   backingSpeed: 3
   active: 1
-  distanceThreshold: 0.5
-  linkToPreviousSegment: 0
+  spacing: 1
   EndReached: 0
 --- !u!114 &5072251761675031765
 MonoBehaviour:

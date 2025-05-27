@@ -7,6 +7,8 @@ public class SegmentTypesSettings : ScriptableObject
     [SerializeField] private List<Material> materials = new List<Material>();
     private Dictionary<int, Material> materialsDictionary = new Dictionary<int, Material>();
 
+    public List<Material> Materials  => materials;
+
     public void Initialize()
     {
         for (int i = 0; i < materials.Count; i++)
