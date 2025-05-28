@@ -1841,9 +1841,9 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 06c3b5088c5e48e4aafffbccce22927d, type: 2}
   splineContainer: {fileID: 96692526}
   segmentPrefab: {fileID: 4900979825812749718, guid: 41421fae9669deb4381934eacef12bf3, type: 3}
-  segmentCount: 30
+  segmentCount: 40
   spacing: 1.3
-  spawnOffset: 0
+  spawnOffset: 0.38
   speed: 5
   maxColors: 6
   testDropDown: {fileID: 328232743}

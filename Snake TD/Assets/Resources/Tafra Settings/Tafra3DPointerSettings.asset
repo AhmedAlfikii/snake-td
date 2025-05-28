@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa09c2171bdaeea4587b73e7e76a81c4, type: 3}
   m_Name: Tafra3DPointerSettings
   m_EditorClassIdentifier: 
-  enabled: 0
+  enabled: 1
   dragThreshold: 0.01
   detectableLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 256
+  allow2DColliders: 1

@@ -120,7 +120,7 @@ public class SnakeSegment : MonoBehaviour
         {
             tDelta = nextSegment.T - t;
 
-            if (tDelta <= spacing)
+            if (tDelta < spacing)
             {
                 return;
             }
@@ -141,13 +141,6 @@ public class SnakeSegment : MonoBehaviour
             if (tDelta > spacing)
             {
                 forwards = false;
-
-                if (EndReached)
-                {
-                    RecursiveEndReachSet(false);
-
-                    onEndMove?.Invoke();
-                }
             }
             else
             {
@@ -161,10 +154,7 @@ public class SnakeSegment : MonoBehaviour
         if (forwards)
             t += (speed / splineContainer.Spline.GetLength()) * Time.deltaTime;
         else
-        {
-
             t -= (backingSpeed / splineContainer.Spline.GetLength()) * Time.deltaTime;
-        }
 
         splineContainer.Evaluate(t, out var worldPosition, out var worldTangent, out _);
 

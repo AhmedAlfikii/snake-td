@@ -76,7 +76,8 @@ namespace TafraKit
                 needsUpdate = true;
             }
         }
-
+        public List<Renderer> Renderers => renderers;
+        
         private void Awake()
         {
             if(renderers.Count == 0)

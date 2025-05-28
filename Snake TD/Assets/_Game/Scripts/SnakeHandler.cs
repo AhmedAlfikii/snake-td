@@ -64,7 +64,7 @@ public class SnakeHandler : MonoBehaviour
             ActivateSnake();
         }
     }
-   
+
     private void InitializeSnake()
     {
         float totalLength = splineContainer.Spline.GetLength();
@@ -73,18 +73,6 @@ public class SnakeHandler : MonoBehaviour
         List<int> splitsRemaining = new List<int>(splits);
         int j = 0;
         remainingSegments = segmentCount;
-
-        //List<Vector3> segmentPoints = new List<Vector3>();
-        //for (int i = 0; i < segmentCount; i++)
-        //{
-        //    float t = spawnOffset + (spacing / totalLength) * i;
-
-        //    spline.Evaluate(t, out var localPos, out var localTangent, out _);
-        //    Vector3 worldPos = splineContainer.transform.TransformPoint(localPos);
-        //    Vector3 worldTangent = splineContainer.transform.TransformDirection(localTangent);
-
-        //    segmentPoints.Add(worldPos);
-        //}
 
         for (int i = 0; i < segmentCount; i++)
         {
@@ -177,6 +165,20 @@ public class SnakeHandler : MonoBehaviour
 
             snakeSegment.Healthy.TakeDamage(new HitInfo(1000));
             segments.Remove(snakeSegment);
+        }
+    }
+    public void DestroySnakeSegment(int type)
+    {
+        if (typeToSegmentDict.TryGetValue(type, out var queue) && queue.Count > 0)
+        {
+            SnakeSegment snakeSegment = queue.Dequeue();
+
+            snakeSegment.Healthy.TakeDamage(new HitInfo(1000));
+            segments.Remove(snakeSegment);
+        }
+        else
+        {
+            Debug.Log($"FF->Couldnt find Segment Type in Dictionary!");
         }
     }
     private void DestroyRandom()
