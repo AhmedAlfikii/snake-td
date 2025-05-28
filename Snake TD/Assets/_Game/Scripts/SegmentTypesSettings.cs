@@ -21,6 +21,9 @@ public class SegmentTypesSettings : ScriptableObject
     }
     public Material GetMaterial(int index)
     {
+
+        Debug.Log($"FF->Key {index}");
+
         return materialsDictionary[index];
     }
     public Material GetRandomMaterial()

@@ -12,12 +12,20 @@ public class ItemsSpawner : MonoBehaviour
 
     [SerializeField] private float spawnYOffset;
     [SerializeField] private MergableItem itemPrefab;
+
+    [SerializeField] private bool autoSpawn = true;
+    [SerializeField] private float autoSpawnInterval = 1f;
+
+    private float timer;
     private List<MergableItem> spawnedItems = new List<MergableItem>();
     private Camera cam;
     private float screenWidth;
     private float screenHeight;
     private UnityEvent<MergableItem> onSpawnedItem = new UnityEvent<MergableItem>();
     private SnakeHandler snakeHandler;
+    private bool snakeInitialized = false;
+    private List<int> splits = new List<int>();
+    private List<int> splitsAvailable = new List<int>();
 
     public List<MergableItem> SpawnedItems => spawnedItems;
     public UnityEvent<MergableItem> OnSpawnedItem => onSpawnedItem;
@@ -31,6 +39,16 @@ public class ItemsSpawner : MonoBehaviour
 
         cam = Camera.main;
     }
+    private void OnEnable()
+    {
+        if (snakeHandler)
+            snakeHandler.OnInitialized.AddListener(OnSnakeInitialized);
+    }
+    private void OnDisable()
+    {
+        if (snakeHandler)
+            snakeHandler.OnInitialized.RemoveListener(OnSnakeInitialized);
+    }
     private IEnumerator Start()
     {
         yield return Yielders.EndOfFrame;
@@ -40,15 +58,45 @@ public class ItemsSpawner : MonoBehaviour
         screenWidth = aspectRatio * cam.orthographicSize * 2;
         screenHeight = 1 / aspectRatio * screenWidth;
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            SpawnItem();
+        }
+
+        if (autoSpawn && snakeInitialized)
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= autoSpawnInterval)
+            {
+                timer = 0;
+
+                SpawnItem();
+            }
+        }
+    }
     public void SpawnItem()
     {
-        MergableItem item = Instantiate(itemPrefab);
-        int itemType = 0;
+        if (splitsAvailable.Count < 1)
+        {
+            Debug.Log($"FF->splits empty! Cannot Spawn Item");
+            return;
+        }
 
-        if (snakeHandler)
-            itemType = Random.Range(0, snakeHandler.MaxColors);
-        else
-            itemType = Random.Range(0, typesSettings.Materials.Count);
+        MergableItem item = Instantiate(itemPrefab);
+
+        int randomIndex = Random.Range(0, splitsAvailable.Count);
+        int randomType = splitsAvailable[randomIndex];
+
+        int itemType = randomType;
+        splits[randomType]--;
+
+        if (splits[randomType] <= 0)
+        {
+            splitsAvailable.RemoveAt(randomIndex);
+        }
 
         item.SetType(itemType);
         item.SetMaterials(typesSettings.GetMaterial(itemType));
@@ -81,6 +129,18 @@ public class ItemsSpawner : MonoBehaviour
 
         SFXPlayer.Play(spawnAudio);
     }
+    private void OnSnakeInitialized()
+    {
+        splits = new List<int>(snakeHandler.Splits);
+        splitsAvailable.Clear();
+        for (int i = 0; i < splits.Count; i++)
+        {
+            splits[i] *= 2; //TODO multiply depending on merge stages
+            splitsAvailable.Add(i);
+        }
+
+        snakeInitialized = true;
+    }
 
     void OnDrawGizmos()
     {
@@ -91,5 +151,4 @@ public class ItemsSpawner : MonoBehaviour
             pos.y = cam.transform.position.y + screenHeight / 2f + spawnYOffset;
         Gizmos.DrawWireCube(pos, Vector3.one);
     }
-
 }

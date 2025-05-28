@@ -30,19 +30,26 @@ public class SnakeHandler : MonoBehaviour
     private List<SnakeSegment> segments = new List<SnakeSegment>();
     private SnakeSegment headSegment;
 
+    private List<int> splits = new List<int>();
+
+    private UnityEvent onInitialized = new UnityEvent();
+
     private Dictionary<int, Queue<SnakeSegment>> typeToSegmentDict = new Dictionary<int, Queue<SnakeSegment>>();
     private int remainingSegments;
     private bool isInitialized = false;
     public UnityEvent OnAllSegmentsDead => onAllSegmentsDead;
+    public UnityEvent OnInitialized => onInitialized;
     public int MaxColors => maxColors;
+    public List<int> Splits => splits;
     private void Awake()
     {
         settings.Initialize();
     }
     void Start()
     {
-        PopulateTestDropdown();
-
+        if (testDropDown)
+            PopulateTestDropdown();
+        
         InitializeSnake();
     }
     private void Update()
@@ -69,8 +76,10 @@ public class SnakeHandler : MonoBehaviour
     {
         float totalLength = splineContainer.Spline.GetLength();
 
-        List<int> splits = RandomSplitSum(segmentCount, maxColors);
+        splits.Clear();
+        splits = RandomSplitSum(segmentCount, maxColors);
         List<int> splitsRemaining = new List<int>(splits);
+
         int j = 0;
         remainingSegments = segmentCount;
 
@@ -83,7 +92,7 @@ public class SnakeHandler : MonoBehaviour
 
             splineContainer.Evaluate(t, out var worldPos, out var worldTangent, out _);
 
-            SnakeSegment segment = Instantiate(segmentPrefab, worldPos, Quaternion.LookRotation(worldTangent),splineContainer.transform);
+            SnakeSegment segment = Instantiate(segmentPrefab, worldPos, Quaternion.LookRotation(worldTangent), splineContainer.transform);
 
             segment.Initialize(splineContainer, speed, false, spacing / totalLength, t);
 
@@ -136,6 +145,7 @@ public class SnakeHandler : MonoBehaviour
 
         headSegment = segments[segments.Count - 1];
 
+        onInitialized?.Invoke();
         isInitialized = true;
     }
     public void ActivateSnake()
