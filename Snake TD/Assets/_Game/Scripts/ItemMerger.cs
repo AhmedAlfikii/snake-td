@@ -144,11 +144,11 @@ public class ItemMerger : MonoBehaviour
     }
     private void OnFullyMerged(MergableItem mergedItem)
     {
-        //damage type color on snake
-
         Debug.Log($"FF->Fully Merged Type {mergedItem.Type}!!!");
-
+        
         if (snakeHandler)
             snakeHandler.DestroySnakeSegment(mergedItem.Type);
+        
+        Destroy(mergedItem.gameObject);
     }
 }

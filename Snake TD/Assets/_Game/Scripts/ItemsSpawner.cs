@@ -10,12 +10,14 @@ public class ItemsSpawner : MonoBehaviour
     [SerializeField] private SegmentTypesSettings typesSettings;
     [SerializeField] private SFXClips spawnAudio;
 
+    [SerializeField] private float spawnYOffset;
     [SerializeField] private MergableItem itemPrefab;
     private List<MergableItem> spawnedItems = new List<MergableItem>();
     private Camera cam;
     private float screenWidth;
     private float screenHeight;
     private UnityEvent<MergableItem> onSpawnedItem = new UnityEvent<MergableItem>();
+    private SnakeHandler snakeHandler;
 
     public List<MergableItem> SpawnedItems => spawnedItems;
     public UnityEvent<MergableItem> OnSpawnedItem => onSpawnedItem;
@@ -25,9 +27,9 @@ public class ItemsSpawner : MonoBehaviour
         int itemStages = 3;
         int neededCopies = Mathf.RoundToInt(Mathf.Pow(2, itemStages - 1));
 
-        cam = Camera.main;
+        snakeHandler = FindFirstObjectByType<SnakeHandler>();
 
-        typesSettings.Initialize();
+        cam = Camera.main;
     }
     private IEnumerator Start()
     {
@@ -41,8 +43,13 @@ public class ItemsSpawner : MonoBehaviour
     public void SpawnItem()
     {
         MergableItem item = Instantiate(itemPrefab);
+        int itemType = 0;
 
-        int itemType = Random.Range(0, typesSettings.Materials.Count);
+        if (snakeHandler)
+            itemType = Random.Range(0, snakeHandler.MaxColors);
+        else
+            itemType = Random.Range(0, typesSettings.Materials.Count);
+
         item.SetType(itemType);
         item.SetMaterials(typesSettings.GetMaterial(itemType));
 
@@ -51,7 +58,7 @@ public class ItemsSpawner : MonoBehaviour
         Vector3 boundsMin = colliderBounds.min;
         Vector3 boundsMax = colliderBounds.max;
 
-        float lowerOffset = item.transform.position.y - boundsMin.y;
+        float lowerOffset = item.transform.position.y - boundsMin.y + spawnYOffset;
         float rightOffset = boundsMax.x - item.transform.position.x;
         float leftOffset = item.transform.position.x - boundsMin.x;
 
@@ -74,4 +81,15 @@ public class ItemsSpawner : MonoBehaviour
 
         SFXPlayer.Play(spawnAudio);
     }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        Vector3 pos = Vector3.zero;
+        if (cam)
+            pos.y = cam.transform.position.y + screenHeight / 2f + spawnYOffset;
+        Gizmos.DrawWireCube(pos, Vector3.one);
+    }
+
 }

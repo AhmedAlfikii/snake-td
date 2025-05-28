@@ -10,6 +10,8 @@ public class SegmentTypesSettings : ScriptableObject
     public List<Material> Materials => materials;
     public void Initialize()
     {
+        materialsDictionary.Clear();
+
         for (int i = 0; i < materials.Count; i++)
         {
             materialsDictionary.Add(i, materials[i]);

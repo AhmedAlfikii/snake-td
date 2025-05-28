@@ -34,7 +34,7 @@ public class SnakeHandler : MonoBehaviour
     private int remainingSegments;
     private bool isInitialized = false;
     public UnityEvent OnAllSegmentsDead => onAllSegmentsDead;
-
+    public int MaxColors => maxColors;
     private void Awake()
     {
         settings.Initialize();
@@ -83,7 +83,7 @@ public class SnakeHandler : MonoBehaviour
 
             splineContainer.Evaluate(t, out var worldPos, out var worldTangent, out _);
 
-            SnakeSegment segment = Instantiate(segmentPrefab, worldPos, Quaternion.LookRotation(worldTangent));
+            SnakeSegment segment = Instantiate(segmentPrefab, worldPos, Quaternion.LookRotation(worldTangent),splineContainer.transform);
 
             segment.Initialize(splineContainer, speed, false, spacing / totalLength, t);
 
