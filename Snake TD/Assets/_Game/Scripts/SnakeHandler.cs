@@ -32,6 +32,8 @@ public class SnakeHandler : MonoBehaviour
 
     private List<int> splits = new List<int>();
 
+    private List<Vector3> previewPoints = new List<Vector3>();
+
     private UnityEvent onInitialized = new UnityEvent();
 
     private Dictionary<int, Queue<SnakeSegment>> typeToSegmentDict = new Dictionary<int, Queue<SnakeSegment>>();
@@ -49,7 +51,7 @@ public class SnakeHandler : MonoBehaviour
     {
         if (testDropDown)
             PopulateTestDropdown();
-        
+
         InitializeSnake();
     }
     private void Update()
@@ -191,6 +193,20 @@ public class SnakeHandler : MonoBehaviour
             Debug.Log($"FF->Couldnt find Segment Type in Dictionary!");
         }
     }
+    public SnakeSegment GetSegmentToDestroy(int type)
+    {
+        if (typeToSegmentDict.TryGetValue(type, out var queue) && queue.Count > 0)
+        {
+            SnakeSegment snakeSegment = queue.Peek();
+
+            return snakeSegment;
+        }
+        else
+        {
+            Debug.Log($"FF->Couldnt find Segment Type in Dictionary!");
+            return null;
+        }
+    }
     private void DestroyRandom()
     {
         for (int i = 0; i < rndToDstry; i++)
@@ -263,15 +279,37 @@ public class SnakeHandler : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
+        if (previewPoints.Count <= 0)
+            return;
+
         Gizmos.color = Color.red;
+
+        for (int i = 0; i < previewPoints.Count; i++)
+        {
+            Gizmos.DrawWireSphere(previewPoints[i], gizmoRadius);
+        }
+    }
+    private void OnValidate()
+    {
+        PreviewSpline();
+    }
+    private void PreviewSpline()
+    {
+        if (splineContainer == null || splineContainer.Spline == null)
+            return;
+
+        var spline = splineContainer.Spline;
+        float length = spline.GetLength();
+
+        previewPoints.Clear();
+
         for (int i = 0; i < segmentCount; i++)
         {
-            //float t = spawnOffset + (i * spacing);
-            float t = spawnOffset + (spacing / splineContainer.Spline.GetLength()) * i;
+            float t = spawnOffset + (spacing / length) * i;
 
             splineContainer.Evaluate(t, out var position, out _, out _);
 
-            Gizmos.DrawWireSphere(position, gizmoRadius);
+            previewPoints.Add(position);
         }
     }
 }

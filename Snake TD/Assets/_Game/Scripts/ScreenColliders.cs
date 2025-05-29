@@ -15,6 +15,8 @@ namespace TafraKit
         [Range(0f, 1f)]
         [SerializeField] private float leftPadding;
 
+        [SerializeField] private float bonusHeight = 0;
+
         private Camera cam;
         private BoxCollider2D topCollider;
         private BoxCollider2D rightCollider;
@@ -35,7 +37,8 @@ namespace TafraKit
             float aspectRatio = cam.aspect;
 
             float width = aspectRatio * cam.orthographicSize * 2;
-            float height = 1 / aspectRatio * width;
+            float height = (1 / aspectRatio * width);
+
 
             float thickness = 2f;
 
@@ -48,7 +51,7 @@ namespace TafraKit
             if(sides.right)
             {
                 rightCollider = gameObject.AddComponent<BoxCollider2D>();
-                rightCollider.size = new Vector2(thickness, height);
+                rightCollider.size = new Vector2(thickness, height + bonusHeight);
                 rightCollider.offset = new Vector2((width / 2f + thickness / 2f) - width * rightPadding, 0);
             }
             if(sides.bottom)
@@ -60,7 +63,7 @@ namespace TafraKit
             if(sides.left)
             {
                 leftCollider = gameObject.AddComponent<BoxCollider2D>();
-                leftCollider.size = new Vector2(thickness, height);
+                leftCollider.size = new Vector2(thickness, height + bonusHeight);
                 leftCollider.offset = new Vector2((-width / 2f - thickness / 2f) + width * leftPadding, 0);
             }
         }

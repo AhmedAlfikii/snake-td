@@ -235,6 +235,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stages:
+  - outlineColor: {r: 0, g: 0, b: 0, a: 1}
+    outlineWidth: 4
+    grayscale: 0
+    dance: 0
   - outlineColor: {r: 1, g: 1, b: 1, a: 1}
     outlineWidth: 4
     grayscale: 0
@@ -838,7 +842,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0

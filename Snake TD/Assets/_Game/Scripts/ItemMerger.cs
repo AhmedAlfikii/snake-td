@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using TafraKit;
 using UnityEngine;
 
@@ -5,6 +7,11 @@ public class ItemMerger : MonoBehaviour
 {
     [SerializeField] private SFXClips mergeAudio;
     [SerializeField] private SFXClips finalMergeAudio;
+
+    [Header("Projectile")]
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private EasingType easingType;
+    [SerializeField] private float animationDuration;
 
     private ItemsSpawner spawner;
     private SnakeHandler snakeHandler;
@@ -144,11 +151,51 @@ public class ItemMerger : MonoBehaviour
     }
     private void OnFullyMerged(MergableItem mergedItem)
     {
+        if (!snakeHandler)
+        {
+            Debug.Log($"FF->Snake Handler Missing!");
+
+            return;
+        }
+
         Debug.Log($"FF->Fully Merged Type {mergedItem.Type}!!!");
-        
-        if (snakeHandler)
-            snakeHandler.DestroySnakeSegment(mergedItem.Type);
-        
+
+        GameObject projectile = Instantiate(projectilePrefab);
+        projectile.transform.position = mergedItem.transform.position;
+
+        SnakeSegment segment = snakeHandler.GetSegmentToDestroy(mergedItem.Type);
+
+        StartCoroutine(Animation(projectile.transform, mergedItem.transform.position, segment.transform, 0, animationDuration, easingType, () =>
+            {
+                snakeHandler.DestroySnakeSegment(mergedItem.Type);
+                Destroy(projectile.gameObject);
+            }));
+
         Destroy(mergedItem.gameObject);
+    }
+
+    protected IEnumerator Animation(Transform transform, Vector3 startPos, Transform endTransform, float startDelay, float animationDuration, EasingType easingType, Action onEnd = null)
+    {
+        yield return Yielders.GetWaitForSeconds(startDelay);
+
+        float time = Time.time;
+        float startTime = time;
+        float endTime = time + animationDuration;
+
+        while (time < endTime)
+        {
+            float raw = (time - startTime) / animationDuration;
+
+            float ease = MotionEquations.GetEaseFloat(raw, easingType.Easing, easingType.Parameters);
+
+            transform.position = Vector3.LerpUnclamped(startPos, endTransform.position, ease);
+
+            yield return null;
+            time = Time.time;
+        }
+
+        transform.position = endTransform.position;
+
+        onEnd?.Invoke();
     }
 }

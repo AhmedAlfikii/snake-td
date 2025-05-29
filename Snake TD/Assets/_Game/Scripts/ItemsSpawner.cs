@@ -4,6 +4,8 @@ using TafraKit;
 using TafraKit.UI;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEditor.Progress;
+using static UnityEngine.UI.Image;
 
 public class ItemsSpawner : MonoBehaviour
 {
@@ -16,6 +18,14 @@ public class ItemsSpawner : MonoBehaviour
     [SerializeField] private bool autoSpawn = true;
     [SerializeField] private float autoSpawnInterval = 1f;
 
+    [Header("Test")]
+    [SerializeField] private int gridWidth = 8;
+    [SerializeField] private int gridHeight = 10;
+    [SerializeField] private float spacingX = 1.1f;
+    [SerializeField] private float spacingY = 1.1f;
+    [SerializeField] private float spawnGizmoRadius = .5f;
+    [SerializeField] private Vector3 origin = Vector3.zero;
+    
     private float timer;
     private List<MergableItem> spawnedItems = new List<MergableItem>();
     private Camera cam;
@@ -73,16 +83,56 @@ public class ItemsSpawner : MonoBehaviour
             {
                 timer = 0;
 
-                SpawnItem();
+                if (!SpawnItem())
+                {
+                    autoSpawn = false;
+                }
             }
         }
     }
-    public void SpawnItem()
+    public bool SpawnCustomPosition(Vector3 spawnPoint)
     {
         if (splitsAvailable.Count < 1)
         {
             Debug.Log($"FF->splits empty! Cannot Spawn Item");
-            return;
+            return false;
+        }
+
+        MergableItem item = Instantiate(itemPrefab);
+
+        int randomIndex = Random.Range(0, splitsAvailable.Count);
+        int randomType = splitsAvailable[randomIndex];
+
+        int itemType = randomType;
+        splits[randomType]--;
+
+        if (splits[randomType] <= 0)
+        {
+            splitsAvailable.RemoveAt(randomIndex);
+        }
+
+        item.SetType(itemType);
+        item.SetMaterials(typesSettings.GetMaterial(itemType));
+
+        item.transform.position = spawnPoint;
+        item.transform.rotation = Quaternion.identity;
+
+        item.Rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+
+        spawnedItems.Add(item);
+
+        onSpawnedItem?.Invoke(item);
+
+        SFXPlayer.Play(spawnAudio);
+
+        return true;
+    }
+
+    public bool SpawnItem()
+    {
+        if (splitsAvailable.Count < 1)
+        {
+            return false;
         }
 
         MergableItem item = Instantiate(itemPrefab);
@@ -128,18 +178,23 @@ public class ItemsSpawner : MonoBehaviour
         onSpawnedItem?.Invoke(item);
 
         SFXPlayer.Play(spawnAudio);
+
+        return true;
     }
     private void OnSnakeInitialized()
     {
         splits = new List<int>(snakeHandler.Splits);
         splitsAvailable.Clear();
+        int count = 0;
         for (int i = 0; i < splits.Count; i++)
         {
-            splits[i] *= 2; //TODO multiply depending on merge stages
+            splits[i] *= 4; //TODO multiply depending on merge stages
             splitsAvailable.Add(i);
+            count += splits[i];
         }
-
         snakeInitialized = true;
+
+        SpawnGrid();
     }
 
     void OnDrawGizmos()
@@ -147,8 +202,27 @@ public class ItemsSpawner : MonoBehaviour
         Gizmos.color = Color.red;
 
         Vector3 pos = Vector3.zero;
-        if (cam)
-            pos.y = cam.transform.position.y + screenHeight / 2f + spawnYOffset;
+        pos.y = Camera.main.transform.position.y + screenHeight / 10 + spawnYOffset;
         Gizmos.DrawWireCube(pos, Vector3.one);
+
+        for (int y = 0; y < gridHeight; y++)
+        {
+            for (int x = 0; x < gridWidth; x++)
+            {
+                Vector3 position = origin + new Vector3(x * spacingX, y * spacingY, 0f);
+                Gizmos.DrawWireSphere(position, spawnGizmoRadius);
+            }
+        }
+    }
+    void SpawnGrid()
+    {
+        for (int y = 0; y < gridHeight; y++)
+        {
+            for (int x = 0; x < gridWidth; x++)
+            {
+                Vector3 position = origin + new Vector3(x * spacingX, y * spacingY, 0f);
+                SpawnCustomPosition(position);
+            }
+        }
     }
 }

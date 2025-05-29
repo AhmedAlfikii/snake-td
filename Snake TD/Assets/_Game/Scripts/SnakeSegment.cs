@@ -1,4 +1,3 @@
-using System;
 using TafraKit.Healthies;
 using UnityEngine;
 using UnityEngine.Events;
