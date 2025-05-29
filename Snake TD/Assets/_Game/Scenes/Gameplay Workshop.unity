@@ -1042,6 +1042,21 @@ MonoBehaviour:
     DelayRange:
       Min: 0
       Max: 0
+  finalMergeFailAudio:
+    Clips:
+    - {fileID: 8300000, guid: 08ef3735b9527d54ab97d0e9fc9d505d, type: 3}
+    VolumeRange:
+      Min: 0.2
+      Max: 0.4
+    PitchRange:
+      Min: 0.8
+      Max: 1.25
+    FadeInDurationRange:
+      Min: 0
+      Max: 0
+    DelayRange:
+      Min: 0
+      Max: 0
   segmentHitAudio:
     Clips:
     - {fileID: 8300000, guid: 78c1c4dd7e76e0944aa2ce64e5aca494, type: 3}
@@ -2017,11 +2032,12 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 06c3b5088c5e48e4aafffbccce22927d, type: 2}
   splineContainer: {fileID: 1147047425}
   segmentPrefab: {fileID: 4900979825812749718, guid: 41421fae9669deb4381934eacef12bf3, type: 3}
-  segmentCount: 30
+  segmentCount: 20
   spacing: 2.5
-  spawnOffset: 0.05
-  speed: 2
-  maxColors: 6
+  spawnOffset: 0.19
+  speed: 1
+  backingSpeed: 8
+  maxColors: 5
   activateOnStart: 1
   testDropDown: {fileID: 966599839}
   testIndx: 0
@@ -2739,7 +2755,8 @@ MonoBehaviour:
   spawnYOffset: 20
   itemPrefab: {fileID: 9172226273244941832, guid: 062e93643a1977747bd13f78e04e7406, type: 3}
   autoSpawn: 1
-  autoSpawnInterval: 0
+  autoSpawnInterval: 0.1
+  maxSpawnedItems: 100
   gridWidth: 8
   gridHeight: 10
   spacingX: 1

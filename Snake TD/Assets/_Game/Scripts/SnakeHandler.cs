@@ -18,6 +18,7 @@ public class SnakeHandler : MonoBehaviour
     [SerializeField] private float spacing = 1f;
     [SerializeField] private float spawnOffset = 0f;
     [SerializeField] private float speed = 2f;
+    [SerializeField] private float backingSpeed = 3f;
     [SerializeField] private int maxColors = 5;
     [SerializeField] private bool activateOnStart = true;
 
@@ -97,7 +98,7 @@ public class SnakeHandler : MonoBehaviour
 
             SnakeSegment segment = Instantiate(segmentPrefab, worldPos, Quaternion.LookRotation(worldTangent), splineContainer.transform);
 
-            segment.Initialize(splineContainer, speed, false, spacing / totalLength, t);
+            segment.Initialize(splineContainer, speed, backingSpeed, false, spacing / totalLength, t);
 
             Material selectedMat = settings.GetMaterial(j);
 
@@ -199,9 +200,17 @@ public class SnakeHandler : MonoBehaviour
     {
         if (typeToSegmentDict.TryGetValue(type, out var list) && list.Count > 0)
         {
-            SnakeSegment snakeSegment = list[0];
-            list.RemoveAt(0);
-            return snakeSegment;
+            for (int i = 0; i < list.Count; i++)
+            {
+                SnakeSegment snakeSegment = list[i];
+                if (snakeSegment.IsVisible)
+                {
+                    list.RemoveAt(i);
+                    return snakeSegment;
+                }
+            }
+            Debug.Log($"FF->cant find a visible segment of color {type}");
+            return null;
         }
         else
         {

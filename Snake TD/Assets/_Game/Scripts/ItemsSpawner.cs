@@ -17,6 +17,7 @@ public class ItemsSpawner : MonoBehaviour
 
     [SerializeField] private bool autoSpawn = true;
     [SerializeField] private float autoSpawnInterval = 1f;
+    [SerializeField] private int maxSpawnedItems = 50;
 
     [Header("Test")]
     [SerializeField] private int gridWidth = 8;
@@ -83,33 +84,37 @@ public class ItemsSpawner : MonoBehaviour
             {
                 timer = 0;
 
-                if (!SpawnItem())
+                if (spawnedItems.Count < maxSpawnedItems)
                 {
-                    autoSpawn = false;
+                    SpawnItem();
                 }
             }
         }
     }
     public bool SpawnCustomPosition(Vector3 spawnPoint)
     {
-        if (splitsAvailable.Count < 1)
-        {
-            Debug.Log($"FF->splits empty! Cannot Spawn Item");
-            return false;
-        }
+        //if (splitsAvailable.Count < 1)
+        //{
+        //    Debug.Log($"FF->splits empty! Cannot Spawn Item");
+        //    return false;
+        //}
 
+        //MergableItem item = Instantiate(itemPrefab);
+        ////accurate number
+        //int randomIndex = Random.Range(0, splitsAvailable.Count);
+        //int randomType = splitsAvailable[randomIndex];
+
+        //int itemType = randomType;
+        //splits[randomType]--;
+
+        //if (splits[randomType] <= 0)
+        //{
+        //    splitsAvailable.RemoveAt(randomIndex);
+        //}
+        
         MergableItem item = Instantiate(itemPrefab);
 
-        int randomIndex = Random.Range(0, splitsAvailable.Count);
-        int randomType = splitsAvailable[randomIndex];
-
-        int itemType = randomType;
-        splits[randomType]--;
-
-        if (splits[randomType] <= 0)
-        {
-            splitsAvailable.RemoveAt(randomIndex);
-        }
+        int itemType = Random.Range(0, snakeHandler.MaxColors);
 
         item.SetType(itemType);
         item.SetMaterials(typesSettings.GetMaterial(itemType));
@@ -130,23 +135,26 @@ public class ItemsSpawner : MonoBehaviour
 
     public bool SpawnItem()
     {
-        if (splitsAvailable.Count < 1)
-        {
-            return false;
-        }
+        //if (splitsAvailable.Count < 1)
+        //{
+        //    return false;
+        //}
+
+        //MergableItem item = Instantiate(itemPrefab);
+
+        //int randomIndex = Random.Range(0, splitsAvailable.Count);
+        //int randomType = splitsAvailable[randomIndex];
+
+        //int itemType = randomType;
+        //splits[randomType]--;
+
+        //if (splits[randomType] <= 0)
+        //{
+        //    splitsAvailable.RemoveAt(randomIndex);
+        //}
 
         MergableItem item = Instantiate(itemPrefab);
-
-        int randomIndex = Random.Range(0, splitsAvailable.Count);
-        int randomType = splitsAvailable[randomIndex];
-
-        int itemType = randomType;
-        splits[randomType]--;
-
-        if (splits[randomType] <= 0)
-        {
-            splitsAvailable.RemoveAt(randomIndex);
-        }
+        int itemType = Random.Range(0, snakeHandler.MaxColors);
 
         item.SetType(itemType);
         item.SetMaterials(typesSettings.GetMaterial(itemType));

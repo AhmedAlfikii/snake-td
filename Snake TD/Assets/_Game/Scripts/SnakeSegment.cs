@@ -26,6 +26,7 @@ public class SnakeSegment : MonoBehaviour
     private UnityEvent onReachedEnd = new UnityEvent();
     private UnityEvent onEndMove = new UnityEvent();
     private Healthy healthy;
+    private bool isVisible;
     private new Renderer renderer;
 
     public Healthy Healthy => healthy;
@@ -34,6 +35,7 @@ public class SnakeSegment : MonoBehaviour
     public UnityEvent OnEndMove => onEndMove;
     public int Type => type;
     public float T => t;
+    public bool IsVisible => isVisible;
     public SnakeSegment PreviousSegment
     {
         get { return previousSegment; }
@@ -61,16 +63,17 @@ public class SnakeSegment : MonoBehaviour
     }
     void Update()
     {
+        isVisible = renderer.isVisible;
+
         if (active)
             MoveAlongSpline();
     }
-    public void Initialize(SplineContainer spline, float speed, bool active, float spacing, float t = 0)
+    public void Initialize(SplineContainer spline, float speed,float backingSpeed, bool active, float spacing, float t = 0)
     {
         splineContainer = spline;
 
         this.speed = speed;
-        backingSpeed = speed; //TODO Change
-
+        this.backingSpeed = backingSpeed;
         this.active = active;
         this.spacing = spacing;
 
