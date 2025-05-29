@@ -19,6 +19,7 @@ public class SnakeHandler : MonoBehaviour
     [SerializeField] private float spawnOffset = 0f;
     [SerializeField] private float speed = 2f;
     [SerializeField] private int maxColors = 5;
+    [SerializeField] private bool activateOnStart = true;
 
     [Header("Testing")]
     [SerializeField] private TMP_Dropdown testDropDown;
@@ -36,13 +37,14 @@ public class SnakeHandler : MonoBehaviour
 
     private UnityEvent onInitialized = new UnityEvent();
 
-    private Dictionary<int, Queue<SnakeSegment>> typeToSegmentDict = new Dictionary<int, Queue<SnakeSegment>>();
+    private Dictionary<int, List<SnakeSegment>> typeToSegmentDict = new Dictionary<int, List<SnakeSegment>>();
     private int remainingSegments;
     private bool isInitialized = false;
     public UnityEvent OnAllSegmentsDead => onAllSegmentsDead;
     public UnityEvent OnInitialized => onInitialized;
     public int MaxColors => maxColors;
     public List<int> Splits => splits;
+    public SegmentTypesSettings Settings => settings;
     private void Awake()
     {
         settings.Initialize();
@@ -53,16 +55,15 @@ public class SnakeHandler : MonoBehaviour
             PopulateTestDropdown();
 
         InitializeSnake();
+
+        if (activateOnStart)
+            ActivateSnake();
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.D))
         {
             DestroySegment();
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            DestroyRandom();
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -139,10 +140,10 @@ public class SnakeHandler : MonoBehaviour
             SnakeSegment snakeSegment = segments[i];
             if (!typeToSegmentDict.ContainsKey(snakeSegment.Type))
             {
-                typeToSegmentDict[snakeSegment.Type] = new Queue<SnakeSegment>();
+                typeToSegmentDict[snakeSegment.Type] = new List<SnakeSegment>();
             }
 
-            typeToSegmentDict[snakeSegment.Type].Enqueue(snakeSegment);
+            typeToSegmentDict[snakeSegment.Type].Add(snakeSegment);
         }
 
         headSegment = segments[segments.Count - 1];
@@ -171,9 +172,9 @@ public class SnakeHandler : MonoBehaviour
     }
     private void DestroySegment()
     {
-        if (typeToSegmentDict.TryGetValue(testIndx, out var queue) && queue.Count > 0)
+        if (typeToSegmentDict.TryGetValue(testIndx, out var list) && list.Count > 0)
         {
-            SnakeSegment snakeSegment = queue.Dequeue();
+            SnakeSegment snakeSegment = list[0];
 
             snakeSegment.Healthy.TakeDamage(new HitInfo(1000));
             segments.Remove(snakeSegment);
@@ -181,12 +182,13 @@ public class SnakeHandler : MonoBehaviour
     }
     public void DestroySnakeSegment(int type)
     {
-        if (typeToSegmentDict.TryGetValue(type, out var queue) && queue.Count > 0)
+        if (typeToSegmentDict.TryGetValue(type, out var list) && list.Count > 0)
         {
-            SnakeSegment snakeSegment = queue.Dequeue();
+            SnakeSegment snakeSegment = list[0];
 
             snakeSegment.Healthy.TakeDamage(new HitInfo(1000));
             segments.Remove(snakeSegment);
+            list.RemoveAt(0);
         }
         else
         {
@@ -195,10 +197,10 @@ public class SnakeHandler : MonoBehaviour
     }
     public SnakeSegment GetSegmentToDestroy(int type)
     {
-        if (typeToSegmentDict.TryGetValue(type, out var queue) && queue.Count > 0)
+        if (typeToSegmentDict.TryGetValue(type, out var list) && list.Count > 0)
         {
-            SnakeSegment snakeSegment = queue.Peek();
-
+            SnakeSegment snakeSegment = list[0];
+            list.RemoveAt(0);
             return snakeSegment;
         }
         else
@@ -207,13 +209,12 @@ public class SnakeHandler : MonoBehaviour
             return null;
         }
     }
-    private void DestroyRandom()
+    public bool DestroySegment(SnakeSegment segment)
     {
-        for (int i = 0; i < rndToDstry; i++)
-        {
-            testIndx = Random.Range(0, maxColors);
-            DestroySegment();
-        }
+        segment.Healthy.TakeDamage(new HitInfo(1000));
+        segments.Remove(segment);
+        //list.Remove(segment); //should be removed already
+        return true;
     }
     private void PopulateTestDropdown()
     {

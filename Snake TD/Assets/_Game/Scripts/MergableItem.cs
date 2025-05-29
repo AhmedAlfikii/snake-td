@@ -18,6 +18,7 @@ public class MergableItem : MonoBehaviour, ITafra3DPointerReceiver
     }
     [SerializeField] private List<MergableItemStage> stages = new List<MergableItemStage>();
     [SerializeField] private EulerToEulerAxisMotion dancingMotion;
+    [SerializeField] private ScaleToScaleMotion scaleMotion;
     [SerializeField] private Transform visuals;
     [SerializeField] private float visualVisibilityAnimationDuration = 1f;
     [SerializeField] private EasingType visualVisibilityAnimationEasing;
@@ -166,5 +167,9 @@ public class MergableItem : MonoBehaviour, ITafra3DPointerReceiver
         {
             renderers[i].material = material;
         }
+    }
+    public void PlayScaleMotion()
+    {
+        scaleMotion.Play();
     }
 }

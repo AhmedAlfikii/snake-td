@@ -7,11 +7,16 @@ public class ItemMerger : MonoBehaviour
 {
     [SerializeField] private SFXClips mergeAudio;
     [SerializeField] private SFXClips finalMergeAudio;
+    [SerializeField] private SFXClips segmentHitAudio;
 
     [Header("Projectile")]
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private EasingType easingType;
     [SerializeField] private float animationDuration;
+
+    [SerializeField] private ParticleSystem segmentExplosionPrefab;
+    [SerializeField] private ParticleSystem ballExplosionPrefab;
+    [SerializeField] private ParticleSystem smallBallExplosionPrefab;
 
     private ItemsSpawner spawner;
     private SnakeHandler snakeHandler;
@@ -137,6 +142,7 @@ public class ItemMerger : MonoBehaviour
 
         Destroy(otherItem.gameObject);
 
+        Color color = snakeHandler.Settings.GetMaterial(mainItem.Type).GetColor("_BaseColor");
         if (mainItem.IsFullyMerged)
         {
             OnFullyMerged(mainItem);
@@ -144,10 +150,13 @@ public class ItemMerger : MonoBehaviour
         }
         else
         {
-            Debug.Log($"FF->item merged but not fully!");
+            mainItem.PlayScaleMotion();
+            ParticleSystem ballVFX = Instantiate(smallBallExplosionPrefab);
+            ballVFX.transform.position = ShiftZ(mainItem.transform.position, -3);
+            ballVFX.startColor = color;
+
             SFXPlayer.Play(mergeAudio);
         }
-
     }
     private void OnFullyMerged(MergableItem mergedItem)
     {
@@ -158,25 +167,41 @@ public class ItemMerger : MonoBehaviour
             return;
         }
 
-        Debug.Log($"FF->Fully Merged Type {mergedItem.Type}!!!");
+        //Debug.Log($"FF->Fully Merged Type {mergedItem.Type}!!!");
 
         GameObject projectile = Instantiate(projectilePrefab);
-        projectile.transform.position = mergedItem.transform.position;
+        projectile.transform.position = ShiftZ(mergedItem.transform.position, -3);
 
         SnakeSegment segment = snakeHandler.GetSegmentToDestroy(mergedItem.Type);
+        Color color = snakeHandler.Settings.GetMaterial(segment.Type).GetColor("_BaseColor");
 
         StartCoroutine(Animation(projectile.transform, mergedItem.transform.position, segment.transform, 0, animationDuration, easingType, () =>
             {
-                snakeHandler.DestroySnakeSegment(mergedItem.Type);
+                ParticleSystem segmentVFX = Instantiate(segmentExplosionPrefab);
+                segmentVFX.transform.position = ShiftZ(segment.transform.position, -3);
+                segmentVFX.startColor = color;
+                SFXPlayer.Play(segmentHitAudio);
+
+                snakeHandler.DestroySegment(segment);
                 Destroy(projectile.gameObject);
             }));
 
+        ParticleSystem ballVFX = Instantiate(ballExplosionPrefab);
+        ballVFX.transform.position = ShiftZ(mergedItem.transform.position, -3);
+        ballVFX.startColor = color;
+
         Destroy(mergedItem.gameObject);
     }
-
-    protected IEnumerator Animation(Transform transform, Vector3 startPos, Transform endTransform, float startDelay, float animationDuration, EasingType easingType, Action onEnd = null)
+    private Vector3 ShiftZ(Vector3 original, float newZ)
+    {
+        Vector3 shifted = new Vector3(original.x, original.y, newZ);
+        return shifted;
+    }
+    private IEnumerator Animation(Transform transform, Vector3 startPos, Transform endTransform, float startDelay, float animationDuration, EasingType easingType, Action onEnd = null)
     {
         yield return Yielders.GetWaitForSeconds(startDelay);
+
+        startPos = new Vector3(startPos.x, startPos.y, -3);
 
         float time = Time.time;
         float startTime = time;
