@@ -1,9 +1,12 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TafraKit;
 using TafraKit.Healthies;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
 
 public class SnakeHandler : MonoBehaviour
@@ -257,9 +260,17 @@ public class SnakeHandler : MonoBehaviour
     private void OnSnakeDied()
     {
         Debug.Log($"FF->Snake Died! GameOver.");
-
         onAllSegmentsDead?.Invoke();
+
+        StartCoroutine(DelayedRestartScene());
     }
+
+    private IEnumerator DelayedRestartScene()
+    {
+        yield return Yielders.GetWaitForSeconds(3f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     private List<int> RandomSplitSum(int total, int parts)
     {
         HashSet<int> breaks = new HashSet<int>();
@@ -287,6 +298,8 @@ public class SnakeHandler : MonoBehaviour
 
         return result;
     }
+
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         if (previewPoints.Count <= 0)
@@ -303,6 +316,8 @@ public class SnakeHandler : MonoBehaviour
     {
         PreviewSpline();
     }
+
+
     private void PreviewSpline()
     {
         if (splineContainer == null || splineContainer.Spline == null)
@@ -322,4 +337,5 @@ public class SnakeHandler : MonoBehaviour
             previewPoints.Add(position);
         }
     }
+#endif
 }

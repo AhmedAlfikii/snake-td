@@ -2036,7 +2036,7 @@ MonoBehaviour:
   spacing: 2.5
   spawnOffset: 0.19
   speed: 1
-  backingSpeed: 8
+  backingSpeed: 3
   maxColors: 5
   activateOnStart: 1
   testDropDown: {fileID: 966599839}
